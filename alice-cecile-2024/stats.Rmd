@@ -1,0 +1,245 @@
+---
+title: "Informal Rust Gamedev in 2024 Survey"
+author: "Jan Hohenheim"
+date: "2024-05-04"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Dependencies
+
+```{r}
+library(tidyverse)
+library(glue)
+library(ggthemes)
+library(latex2exp)
+
+theme_set(theme_solarized_2())
+```
+
+## Data Cleaning
+
+See <https://www.reddit.com/r/rust_gamedev/comments/1cka6n8/informal_rust_gamedev_in_2024_survey_results/>
+
+```{r}
+dat.raw <- read_csv("data_original.csv")
+```
+
+```{r}
+dat <- dat.raw |>
+  # Change names
+  ## Timestamp
+  rename_at(1, ~ "timestamp") |>
+  ## How are you currently using Rust to make games?
+  rename_at(2, ~ "usage") |>
+  ## What Rust-based game engine do you primarily use?
+  rename_at(3, ~ "engine") |>
+  ## Long compile and iteration times
+  rename_at(4, ~ "bad_iteration_time") |>
+  ## Problems with Rust itself (other than compile times)
+  rename_at(5, ~ "bad_rust") |>
+  ## Problems in platform-abstracting crates like winit or wgpu
+  rename_at(6, ~ "bad_abstraction") |>
+  ## Inadequate learning materials or docs
+  rename_at(7, ~ "bad_docs") |>
+  ## Poor tooling for artists and game designers
+  rename_at(8, ~ "bad_tooling") |>
+  ## Difficulty paying to get open source problems fixed
+  rename_at(9, ~ "bad_paying_for_bugs") |>
+  ## Lack of console support
+  rename_at(10, ~ "bad_console") |>
+  ## Immature mobile support
+  rename_at(11, ~ "bad_mobile") |>
+  ## Immature web support
+  rename_at(12, ~ "bad_web") |>
+  ## Bugs in the engine I use
+  rename_at(13, ~ "bad_engine_bugs") |>
+  ## Missing features in the engine I use
+  rename_at(14, ~ "bad_engine_features") |>
+  ## Difficulty hiring experts who know Rust
+  rename_at(15, ~ "bad_hiring") |>
+  ## Poor performance
+  rename_at(16, ~ "bad_performance") |>
+  ## If you could magically add or fix three things about Rust itself, what would they be?
+  rename_at(17, ~ "magic_fix") |>
+  # Rename factors
+  mutate(usage = fct_recode(usage, 
+    gamedev_serious_hobby = "I have at least one serious hobbyist project that I have or am planning to ship.",
+    tooling_creator = "Actually, I only use Rust to make game engines or tools for gamedev.",
+    gamedev_commercial_solo = "I work by myself, but have a project that I have or am planning to sell.",
+    gamedev_financial_support = "I work by myself or in a tiny team, and am attempting to support myself financially by selling games made in Rust.",
+    tooling_company = "I am part of a company that uses Rust game tools to make things that are not games.",
+    gamedev_learner = "I'm still learning.",
+  )) |>
+  # Classify custom answers. There's probably a better way to do this, sorry
+  mutate(usage = usage |>
+    fct_recode(gamedev_serious_hobby = "I've used Rust for making tools while working in the games industry and also am working on a serious side project") |>
+    fct_recode(gamedev_serious_hobby = "I am part of a large open source game written in Rust") |>
+    
+    fct_recode(gamedev_commercial_solo = "I have a game engine and game editor in rust that I am looking to sell commercially. I have another project that is already released that has parts written in rust. And I am currently working on a third, unrelated project,  on my own, that I intend to sell commercially") |>
+       
+    fct_recode(gamedev_financial_support = "Both make games and tools using Rust in a tiny team to support financially by doing contract work.") |>
+    fct_recode(gamedev_financial_support = "I am part of a company that is using Rust to make games.") |>
+      
+    fct_recode(tooling_company = "I work for Foresight, making CAD tools using bevy and rust.") |>
+    fct_recode(tooling_company = "I use Rust game tools for academic research.") |>
+  
+    fct_recode(gamedev_learner = "I write rust code but not much game-dev but I dabbled with bevy a little bit") |>
+  
+    fct_recode(gamedev_casual_hobby = "Hobbyist game developer") |>
+    fct_recode(gamedev_casual_hobby = "\"I have at least one serious hobbyist project\" … for which \"shipping\" is not really the fundamental goal.") |>
+    fct_recode(gamedev_casual_hobby = "Only as a hobby") |>
+    fct_recode(gamedev_casual_hobby = "I am still in university, so not working commercially, but use Rust to make game jam games (actual games! just small ones)") |>
+    fct_recode(gamedev_casual_hobby = "I use rust to make games primarily as a hobby, but technically have earned money doing so.") |>
+    fct_recode(gamedev_casual_hobby = "I use Bevy to create games and teach my son about developing and Rust") |>
+    fct_recode(gamedev_casual_hobby = "I sometimes use Rust/Bevy for Game Jam entries as a change from Godot primarily to gain more Rust experience/learning.") |>
+    fct_recode(gamedev_casual_hobby = "I make games for my kids") |>
+      
+    fct_recode(gamedev_quit = "I used to make games in Rust.") |>
+    fct_recode(gamedev_quit = "Recently moved game project away from Rust") |>
+    fct_recode(gamedev_quit = "im not using rust for game dev anymore - turns out it sucks ass for it") |>
+    fct_recode(gamedev_quit = "Tried Rust for gamedev. Too much ceremony needed for everything. It was not fun.") |>
+    fct_recode(gamedev_quit = "I was working by myself to financially support with games made in Rust, but recently ive switched to GDscript for most game code.") |>
+    fct_recode(gamedev_quit = "I have made games in Rust in the past") |>
+  
+    fct_recode(other = "Paid contractor making a metaverse client") |>
+    fct_recode(other = "I worked for a games company before") |>
+    fct_recode(other = "I work with Rust outside of games but I want to make games in it when the tools are more mature") |>
+    fct_recode(other = "I was \"I  have at least one serious hobbyist project that I have or am planning to ship.\" in 2021") |>
+    fct_recode(other = "I use Rust game tools to make things that are not games as a hobby or passion.") |>
+    fct_recode(other = "I freelance for companies shipping AAA games.") |>
+    fct_recode(other = "I don't make games in Rust.")
+) |>
+  mutate(engine = factor(engine) |>
+    fct_recode(fyrox = "Fyrox") |>
+    fct_recode(fyrox = "Been experimenting, but mostly fyrox.") |>
+    fct_recode(fyrox = "Tried Fyrox. Great engine but Rust was the limitation.") |>
+    fct_recode(bevy = "Bevy") |>
+    fct_recode(bevy_extra = "Bevy + In House Engine") |>
+    fct_recode(bevy_extra = "both Bevy & no-engine / in-house, depending on client and project") |>
+    fct_recode(bevy_extra = "In house and Bevy") |>
+    fct_recode(chuot = "Chuột") |>
+    fct_recode(comfy = "Comfy") |>
+    fct_recode(custom = "Custom-written wgpu-based 2D engine (for Visual Novels)") |>
+    fct_recode(custom = "No engine / in-house engine") |>
+    fct_recode(custom = "My custom engine") |>
+    fct_recode(gamercade = "Gamercade") |>
+    fct_recode(godot = "gdnative (Rust and Godot)") |>
+    fct_recode(godot = "Godot") |>
+    fct_recode(godot = "Godot with rust bindings (gdext)") |>
+    fct_recode(godot = "Godot-GDNative") |>
+    fct_recode(godot = "godot-rust") |>
+    fct_recode(godot = "Godot-Rust") |>
+    fct_recode(godot = "Godot + gdnative") |>
+    fct_recode(godot = "Godot/gdext") |>
+    fct_recode(raylib = "Raylib Rust bindings") |>
+    fct_recode(raylib = "Raylib-ffi") |>
+    fct_recode(none = "no engine, but we use specs + wgpu + conrod/iced for gui") |>
+    fct_recode(none = "No engine with wgpu, bevy ecs, egui.") |>
+    fct_recode(none = "No engine") |>
+    fct_recode(none = "wgpu") |>
+    fct_recode(none = "SDL") |>
+    fct_recode(none = "Rend3/WGPU") |>
+    fct_recode(none = "None") |>
+    fct_recode(tetra = "Tetra") |>
+    fct_recode(speedy2d = "Speedy2D") |>
+    fct_recode(quad = "Macroquad") |>
+    fct_recode(quad = "miniquad") |>
+    fct_recode(piston = "Piston") |>
+    fct_recode(ggez = "Good Web Game") |>
+    fct_recode(other = "I have only tried Fyrox and Bevy but both are currently lacking")
+  )
+    
+dat |> summary()
+dat |> head()
+```
+
+```{r}
+dat |> write_csv("data_cleaned.csv")
+```
+
+## Generic Plots
+
+```{r}
+dat |> 
+  ggplot(aes(x = usage)) +
+  geom_bar() +
+  ggtitle("usage") +
+  # use abbreviated labels
+  scale_x_discrete(labels = c(
+    "gamedev_serious_hobby" = "Serious hobbyist",
+    "tooling_creator" = "Creating tools",
+    "gamedev_commercial_solo" = "Solo dev (commercial)",
+    "gamedev_financial_support" = "Financially Independent",
+    "tooling_company" = "Working in company that uses tooling",
+    "gamedev_learner" = "Still learning",
+    "gamedev_casual_hobby" = "Casual hobbyist",
+    "gamedev_quit" = "Quit Rust gamedev",
+    "other" = "Other"
+  )) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+dat |>
+  ggplot(aes(x = engine)) +
+  geom_bar() +
+  ggtitle("Engine") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+dat |>
+  filter(engine != "bevy") |>
+  filter(engine != "custom") |>
+  ggplot(aes(x = engine)) +
+  geom_bar() +
+  ggtitle("Engine (without Bevy or Custom)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+dat |>
+  pivot_longer(cols = 4:16, names_to = "issue", values_to = "rating") |>
+  ggplot(aes(x = issue, y = rating)) +
+  geom_boxplot() +
+  ggtitle("Issues in the ecosystem") +
+  scale_x_discrete(labels = c(
+    "bad_iteration_time" = "Long compile and iteration times",
+    "bad_rust" = "Problems with Rust itself (other than compile times)",
+    "bad_abstraction" = "Problems in platform-abstracting crates like winit or wgpu",
+    "bad_docs" = "Inadequate learning materials or docs",
+    "bad_tooling" = "Poor tooling for artists and game designers",
+    "bad_paying_for_bugs" = "Difficulty paying to get open source problems fixed",
+    "bad_console" = "Lack of console support",
+    "bad_mobile" = "Immature mobile support",
+    "bad_web" = "Immature web support",
+    "bad_engine_bugs" = "Bugs in the engine I use",
+    "bad_engine_features" = "Missing features in the engine I use",
+    "bad_hiring" = "Difficulty hiring experts who know Rust",
+    "bad_performance" = "Poor performance"
+  )) +
+  coord_flip()
+```
+
+
+## Analysis
+
+```{r}
+# TODO: change this, this is horrible.
+lm(bad_iteration_time ~ engine, data = dat) |> summary()
+lm(bad_rust ~ engine, data = dat) |> summary()
+lm(bad_abstraction ~ engine, data = dat) |> summary()
+lm(bad_docs ~ engine, data = dat) |> summary()
+lm(bad_tooling ~ engine, data = dat) |> summary()
+lm(bad_paying_for_bugs ~ engine, data = dat) |> summary()
+lm(bad_console ~ engine, data = dat) |> summary()
+lm(bad_mobile ~ engine, data = dat) |> summary()
+lm(bad_web ~ engine, data = dat) |> summary()
+lm(bad_engine_bugs ~ engine, data = dat) |> summary()
+lm(bad_engine_features ~ engine, data = dat) |> summary()
+lm(bad_hiring ~ engine, data = dat) |> summary()
+lm(bad_performance ~ engine, data = dat) |> summary()
+```
+
+There are imo no significant correlations, considering the huge number of tests and the small sample sizes for some of these categories.
+

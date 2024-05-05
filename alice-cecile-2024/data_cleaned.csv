@@ -1,0 +1,640 @@
+timestamp,usage,engine,bad_iteration_time,bad_rust,bad_abstraction,bad_docs,bad_tooling,bad_paying_for_bugs,bad_console,bad_mobile,bad_web,bad_engine_bugs,bad_engine_features,bad_hiring,bad_performance,magic_fix
+4/29/2024 12:40:36,gamedev_financial_support,bevy,0,2,2,0,0,0,0,0,0,1,5,0,0,Unblock some of the things preventing * as entities
+4/29/2024 12:40:58,gamedev_serious_hobby,bevy,1,0,0,1,2,0,0,0,0,0,2,0,0,"Lifetimes lifetimes, iteration speed, and lifetimes."
+4/29/2024 12:43:43,gamedev_commercial_solo,bevy,4,2,2,1,3,3,5,4,2,1,3,3,1,"A way to work around the orphan rule (relaxed in a given namespace, or in binary crates)
+
+Variadics
+
+"
+4/29/2024 12:44:27,gamedev_serious_hobby,none,0,0,1,0,0,0,0,0,0,0,0,0,0,Finish and stabilize portable SIMD and generators
+4/29/2024 12:47:07,gamedev_serious_hobby,bevy,0,0,0,1,2,0,0,0,0,2,2,1,0,Dynamic linking by default
+4/29/2024 12:47:13,gamedev_learner,bevy,0,1,3,4,4,4,0,2,3,1,5,0,2,"Variadic Generics, Macro error messages on the same level as normal Rust, reasonably full language functionality in consts"
+4/29/2024 12:47:38,gamedev_financial_support,custom,4,3,3,0,1,5,3,0,0,2,2,0,0,"#1, Cargo: Pre-built or proprietary libraries (fmod, sdl2) are difficult to integrate, ship, and debug.
+
+#2, Cargo: Getting good build times is difficult. Having many crates comes with unpleasant trade-offs: rigid organization, the orphan rule, etc
+
+#3, Leadership: If Rust wants to be taken seriously as a tool for game development, there need to be strong leaders with industry experience at the helm. Industry veterans are scared away from things when they don't see other veterans buying in, and that is currently the case."
+4/29/2024 12:48:24,gamedev_commercial_solo,custom,0,0,0,1,0,0,2,0,0,0,0,0,0,High memory usage during compilation; Remove panics in crates by replacing all `unwrap()/expect()` with early return with an error value.
+4/29/2024 12:48:33,gamedev_commercial_solo,bevy,2,1,2,1,2,4,3,4,5,2,5,0,1,"1. Add variadics
+2. Relax orphan rules
+3. Improve hot-reloading support
+"
+4/29/2024 12:48:40,gamedev_learner,bevy,3,3,1,3,4,1,0,1,4,2,3,0,2,Faster compile times. Maybe a few more escape hatches (easy to fix later) for things like borrow checker issues. Obvious GUI patterns.
+4/29/2024 12:53:32,gamedev_financial_support,bevy,0,0,1,0,2,0,5,2,0,2,2,0,0,"A C backend (generates C) would allow me to target a certain console. I have been investigating using mrustc or something, but I don't have the time. I'd love higher-kinded types, since I have to hack around the lack of them. Stabilize the allocator API."
+4/29/2024 12:53:33,gamedev_commercial_solo,none,2,0,0,1,3,0,0,0,0,0,2,3,0,"Stable ABI, Rust-like scripting language with types but less strict than Rust, Generators/Coroutines"
+4/29/2024 12:55:09,gamedev_serious_hobby,bevy,0,0,0,2,2,0,2,0,0,0,2,0,0,"* the ability to add additional error message context around system trait implementation issues
+* ??
+* ?"
+4/29/2024 12:57:57,gamedev_learner,bevy,4,2,1,4,4,0,1,1,4,2,3,1,0,"Good live-reloading, orphan rule, smarter analysis of when it’s safe to mutate disjoint parts of a collection."
+4/29/2024 12:58:23,gamedev_serious_hobby,bevy,1,0,1,5,3,0,2,2,0,4,4,0,1,"Negative impls
+Declarative derive macros
+Macro_rules generics"
+4/29/2024 13:03:38,gamedev_learner,fyrox,3,0,3,3,3,0,3,3,2,3,3,0,0,Classes. We need classes.
+4/29/2024 13:11:56,gamedev_serious_hobby,bevy,2,0,0,1,4,0,0,1,3,0,2,1,0,"A single async runtime in std, add the file name to file not found errors, specialization"
+4/29/2024 13:18:49,tooling_creator,custom,5,5,2,2,4,0,4,3,2,1,3,3,1,"Hot reload, compile times, iteration speed, though the last one is against rust philosophy and not a good thing for the rust ecosystem as a whole."
+4/29/2024 13:20:06,gamedev_serious_hobby,bevy,3,2,1,2,3,1,2,2,1,1,3,0,1,"hot reload, good examples for tree-like data structures, compiler seems very crashy"
+4/29/2024 13:20:14,tooling_company,bevy,2,0,1,1,0,0,0,0,3,1,5,1,1,"more expressive polymorphism, more expressive polymorphism, and more expressive polymorphism"
+4/29/2024 13:20:49,tooling_company,custom,2,0,1,1,0,0,0,0,1,0,0,0,0,"Faster compile times, improve async/await ecosystem, better communication and transparency between all of the Rust working groups/foundation/etc."
+4/29/2024 13:22:57,tooling_company,bevy,4,4,3,1,2,0,0,0,0,0,3,1,0,"- Option to disable orphan rules for binaries
+- Better options for UI: egui is the best we've found, but it's not really sufficient for our needs. We're investigating dioxus though"
+4/29/2024 13:33:58,gamedev_commercial_solo,bevy,4,1,0,4,2,0,0,0,2,0,1,0,0,the error messages involved with bevy system parameters are a major pain point. I would also personally greatly enjoy if modules (mod.rs keyword for modules in a folder) were renamed to something that would alphabetically appear at the top of any such directory)
+4/29/2024 13:37:12,gamedev_serious_hobby,quad,1,1,0,0,0,0,0,0,0,0,1,0,0,Errors can always be better despite how good they are. There are never enough utility functions. Macro's   are a bit of a pain.
+4/29/2024 13:42:24,gamedev_serious_hobby,bevy,2,0,0,1,0,0,0,0,0,0,0,1,0,"I can only really think of one thing which is ""The compile times™"" Though they are not *that* bad (Around 20 seconds for me when using bevy), it adds up over time. With that being said, it is really not that bad as it seems, as I just use cargo check which is by far fast enough"
+4/29/2024 13:44:34,gamedev_commercial_solo,bevy,4,0,1,1,2,0,1,4,0,1,5,0,2,"Iterative compile times (especially on Windows, I switched to Linux because of this), orphan rule, official compile time reflection (if were talking ""magically"" might as well go big lol)"
+4/29/2024 13:51:07,tooling_company,bevy,4,2,3,0,1,1,0,1,1,1,4,1,0,"Compile times, specialization, mature ui library"
+4/29/2024 13:51:40,gamedev_quit,fyrox,3,5,3,1,5,0,0,2,0,1,2,0,0,Rust is good at what it was meant for. Those qualities just don't translate well to gamedev.
+4/29/2024 13:56:57,tooling_creator,bevy,3,1,1,3,4,0,0,0,2,1,1,0,1,"Better hot reloading support for code. This would majorly help the fast iteration cycle because you wouldn't need to recompile the code, just magically patch in the section that changed at runtime.
+
+A stable, opt-in ABI (including vtables!). This adds in to the previous point. If there is a stable ABI (crabi?) that supports traits, generics, fat pointers, and more, then hot reloading would be even easier. (It would also make `bevy_dynamic_plugin` work!)
+
+Finally, top-level module proc-macros. I'm not sure if this is possible already, but I would love to write `#!my_proc_macro` at the top of any module to transform all of the code it contains. This could lead to something like automatic system registration, automatic reflect derives, and more."
+4/29/2024 14:08:05,gamedev_serious_hobby,godot,1,2,0,0,0,0,0,0,0,0,0,0,0,Features for easier and faster iteration
+4/29/2024 14:08:14,other,bevy,5,5,0,1,0,0,0,0,0,5,3,0,0,"Better Compile Times, A native rust debugger"
+4/29/2024 14:11:42,gamedev_commercial_solo,bevy,3,1,2,0,0,0,0,0,5,3,0,0,1,"Make it easier to prototype code in, get rid of the orphan rule, no idea on #3"
+4/29/2024 14:13:37,tooling_company,bevy,0,2,5,0,0,0,0,0,0,0,1,0,0,"add compile time reflection, make rust analyzer work reliably, automatically prevent semver violations in cargo"
+4/29/2024 14:16:33,gamedev_serious_hobby,bevy,4,0,0,2,3,0,0,0,3,1,5,0,1,No orphan rule!
+4/29/2024 14:18:05,tooling_company,fyrox,0,0,0,0,0,0,0,4,0,0,0,0,0,"If you could magically add or fix three things about Rust itself, what would they be?"
+4/29/2024 14:24:19,gamedev_financial_support,godot,0,1,0,0,0,0,0,0,0,1,1,0,0,"Remove the orphan rules
+Remove RFC 1023
+Magically allow all traits to be converted into objects (Box<dyn Trait>)"
+4/29/2024 14:24:59,gamedev_commercial_solo,bevy,0,1,0,0,0,0,3,0,0,2,5,0,0,"Partial borrows, removing the Orphan Rule for binary crates, LSP/debugger improvements"
+4/29/2024 14:32:57,other,other,5,3,5,4,5,1,2,0,3,4,5,0,5,"Compile times (and hot recompiles :) ), GC, better debugging"
+4/29/2024 14:36:51,tooling_creator,chuot,4,1,0,0,4,0,0,2,4,0,0,0,0,"Hot reloadable code, more control over the build pipeline and reflection"
+4/29/2024 14:38:10,gamedev_serious_hobby,bevy,0,0,0,4,4,0,0,0,0,0,4,0,0,"Not game related and just one, but ""enum variants as types"""
+4/29/2024 14:40:13,tooling_creator,bevy,4,3,4,1,4,0,0,0,0,1,3,0,3,"Orphan rule, compile times, and coroutines."
+4/29/2024 14:43:58,gamedev_financial_support,custom,4,1,2,1,1,2,2,1,0,1,2,1,0,"5x faster compile times, incl incremental ones.
+drop/make orphan rule more flexible.
+a fully sandboxed & distributable cargo2 build system"
+4/29/2024 14:44:38,gamedev_serious_hobby,custom,5,2,3,1,3,2,0,0,0,0,0,1,0,"proc-macro caching (iteration time improvement), if-let chains, orphan rule override"
+4/29/2024 14:56:26,gamedev_commercial_solo,custom,3,1,5,0,2,0,3,0,1,0,2,0,0,"Removing numeric as-casting and providing a syntactical sugar alternative based on TryInto. 
+Doing anything math-heavy becomes really cumbersome and difficult to read. Some as_f32!(a+b * c, etc) macro that turns everything into the into or try_into for f32, and then returns a Result would reduce all the noise.  
+
+ Either significantly remove compile times by a factor of x100 or make crate maintainers not depend heavily on dependencies that blow up compile time. It is kinda difficult to justify having winit+wgpu, the most popular ""low level"" combination, pull in 140 dependencies, while something like Macroquad mostly relies only on the system libs(Windows API, X11, ..) depending on the platform. 
+
+Some way to forward calls to fields in a struct. Since there is no data inheritance, it is not uncommon to create some sort of facade for the owning struct, to delegate calls to the different fields. This forwarding should have some special powers, like translating to partial borrows."
+4/29/2024 15:11:04,tooling_creator,custom,1,0,0,0,1,0,0,0,0,0,0,0,0,"Not much, I'm quite happy with it!"
+4/29/2024 15:11:41,gamedev_serious_hobby,bevy,1,1,1,2,1,2,3,2,1,1,4,0,0,"Proper Algebraic Effects (and replace async with it), an instant-build JIT for dev-time, and partial/field-specific borrowing for functions."
+4/29/2024 15:11:41,gamedev_learner,bevy,5,1,0,4,2,0,0,2,0,2,1,0,0,Anything that improves iteration time
+4/29/2024 15:12:06,gamedev_serious_hobby,bevy,4,4,2,4,2,1,1,1,0,1,4,1,1,"compile times, and rapid prototyping"
+4/29/2024 15:12:30,gamedev_serious_hobby,custom,2,3,3,4,0,0,0,0,0,0,5,0,0,"* Make it possible to alias a trait, so that I can just use dyn T and impl T without having to type out what T actually is every single time (I note that using a macro here doesn't work, as macros are not allowed in trait position; impl T!() is a compile error)
+* Make it easier to work with closures in general (this includes things like storing them somewhere; also I'm wondering why ""move"" isn't the default)
+* Port rustc to stable rust"
+4/29/2024 15:12:47,gamedev_commercial_solo,custom,2,0,0,5,1,0,5,2,0,0,5,2,0,"faster compile times, better mobile support"
+4/29/2024 15:13:21,gamedev_serious_hobby,custom,5,3,4,1,3,0,0,0,0,4,2,0,0,"stabilise simd support, much faster compilation times (at least 3x), and better macro tooling (more ergonomic expansion in IDEs, better error messages, and better syntax)"
+4/29/2024 15:14:41,gamedev_financial_support,bevy,3,3,1,0,5,0,5,5,2,2,4,2,0,More leeway in strict typing/correctness for prototyping and just trying things out.
+4/29/2024 15:14:55,gamedev_learner,bevy,1,0,2,4,4,2,0,0,3,1,3,0,1,The chaos that is cargo
+4/29/2024 15:15:42,tooling_company,bevy,3,4,0,0,0,0,0,0,0,1,0,0,1,"variadics, better type resolution for complex Fn trait bounds, coroutines/generators"
+4/29/2024 15:20:28,gamedev_commercial_solo,ggez,4,0,2,0,4,0,0,0,2,1,5,0,0,"Better dynamic linking, tuple structs, and the macro system is more approachable"
+4/29/2024 15:21:00,gamedev_financial_support,bevy_extra,3,2,1,0,2,0,2,0,0,0,0,0,0,"1. Stabilize specialization
+2. Make the compiler lightning fast
+3. Implement scan-able future stacks so that you could make @kyren's safe, ergonomic garbage collector idea work."
+4/29/2024 15:21:38,gamedev_serious_hobby,ggez,4,4,1,3,0,0,0,0,0,1,2,0,0,"self-referential structs, compile-time reflection, try blocks"
+4/29/2024 15:22:41,tooling_company,bevy,2,0,2,0,2,2,0,2,0,1,1,0,2,"1) compile times 
+2) Rust analyzer is very slow too
+3) better ways to work with unsafe static mut when you absolutely know your app is single threaded"
+4/29/2024 15:23:55,gamedev_learner,bevy,5,0,0,3,5,3,4,4,3,0,5,0,0,Nothing
+4/29/2024 15:24:34,gamedev_serious_hobby,bevy,5,1,4,2,0,2,0,0,1,2,4,0,1,"Instant compile times, sub second startup/refresh times in rust-analyzer after reloading vscode window and/or modifying crate dependencies, circular dependency avoidance alternatives to creating a bunch of new crates"
+4/29/2024 15:25:23,gamedev_learner,bevy,3,4,5,4,1,0,3,5,3,1,3,0,0,Unsure
+4/29/2024 15:25:33,gamedev_serious_hobby,custom,1,0,3,0,3,0,3,3,0,0,0,3,0,"remove std from wasm32-unknown-unknown, remove static mut, magically make it know which arithmetic overflow behavior I want for each operation."
+4/29/2024 15:25:48,gamedev_learner,bevy,5,4,0,4,0,0,0,1,0,0,4,0,0,"Hot reloading, faster compile times"
+4/29/2024 15:25:51,gamedev_commercial_solo,bevy,2,0,0,1,2,0,0,0,0,0,3,0,0,"Make ` as ` vs Into more defined, finish specialization and I guess more planed but still nightly/not implemented stuff"
+4/29/2024 15:26:54,tooling_creator,bevy,5,2,1,2,5,1,1,1,2,1,3,3,1,Make it easier to work with the borrow checker
+4/29/2024 15:26:56,gamedev_financial_support,bevy,4,0,0,1,1,2,3,0,0,1,3,0,0,Ultra-fast build times. Easy scripting integration. Effortless module hot-reloading.
+4/29/2024 15:26:59,other,bevy,1,0,0,2,3,0,0,0,0,0,4,0,0,"Compile and link time, full support for const generics and const fn, async support fully mature"
+4/29/2024 15:28:01,tooling_creator,bevy,5,4,1,0,0,0,0,0,2,1,4,0,0,"Hot reloading for code (like in webdev), a mature UI solution (with debugging like in webdev), mature localization support (integrated in engines)"
+4/29/2024 15:28:06,gamedev_commercial_solo,ggez,0,1,1,5,4,1,4,0,1,3,5,1,1,dont feel like there are tons or projects that live 3 years and then go into oblivion
+4/29/2024 15:28:48,gamedev_serious_hobby,bevy,4,0,0,1,5,1,0,0,0,2,2,0,1,NA
+4/29/2024 15:28:51,gamedev_learner,bevy,4,3,0,1,4,0,0,0,0,0,4,0,0,"Reduce compile times, native reflection, thanos snap the orphan rule"
+4/29/2024 15:30:06,gamedev_serious_hobby,bevy,3,0,0,3,2,0,0,0,0,0,2,0,0,"Faster compilation, Faster Rust Analyzer and don't know enough for a third one"
+4/29/2024 15:30:07,tooling_creator,bevy,1,0,0,4,0,0,0,0,0,0,2,0,5,Native/Better Hot Reloading
+4/29/2024 15:30:13,gamedev_learner,bevy,0,0,3,3,2,0,3,4,3,0,4,0,0,Add a visual editor
+4/29/2024 15:30:22,gamedev_learner,bevy,3,3,0,2,4,0,0,0,0,0,5,0,0,"Async errors, compile time, assholes in the Rust Language Discord"
+4/29/2024 15:30:29,gamedev_casual_hobby,bevy,0,0,1,0,1,0,0,0,0,0,0,0,0,Sometimes when iterating over an idea the compiler is too strict. Interestingly I think Bevy abstractions are so good you don’t often hit common rust issues for small games at least
+4/29/2024 15:30:34,gamedev_commercial_solo,bevy,1,0,2,3,0,1,5,5,0,0,3,0,1,Don't really have problem with Rust itself
+4/29/2024 15:30:41,gamedev_serious_hobby,quad,2,1,0,0,0,0,0,0,2,1,1,0,0,Not sure
+4/29/2024 15:31:02,gamedev_serious_hobby,bevy,5,1,1,1,0,2,2,2,2,2,2,4,0,Compilation time first and more mature game engine
+4/29/2024 15:31:17,gamedev_financial_support,bevy,1,0,1,3,3,0,3,0,0,2,5,3,0,"Better renderers /GI in bevy, more support for artistic tooling, faster compile times"
+4/29/2024 15:31:20,gamedev_learner,bevy,1,2,2,4,3,1,1,1,1,2,3,1,1,"very short compile time, built-in hot-reload, auto derive"
+4/29/2024 15:31:50,gamedev_serious_hobby,custom,4,2,2,1,3,0,3,3,0,3,3,0,1,"A good solution for shared libraries, a beginner mode with automatic arc/cloning, an easy to use gui solution"
+4/29/2024 15:32:13,gamedev_serious_hobby,bevy,2,0,1,0,1,0,0,0,0,1,1,0,0,"compilation time, orphan rule, optional borrow checker in unsafe mode (maybe call it UNSAFE2: UNSHIPPABLE)"
+4/29/2024 15:33:52,gamedev_serious_hobby,bevy,4,0,1,5,2,0,0,1,1,0,1,2,0,"1. Compilation time - Making the compile times so fast they can practically be called hot reload
+2. First class support for reflection"
+4/29/2024 15:34:41,gamedev_commercial_solo,bevy,3,1,0,1,4,1,0,0,0,2,5,0,4,"Variardic Generics, Compile Times, Ecosystem maturity"
+4/29/2024 15:34:47,gamedev_learner,bevy,3,3,0,4,3,0,3,3,2,0,3,3,2,n/a
+4/29/2024 15:37:43,gamedev_commercial_solo,ggez,1,0,1,0,3,0,0,5,4,1,2,0,0,"Debug code evaluation; Easy OS cross compilation, More crates like egui"
+4/29/2024 15:39:37,gamedev_serious_hobby,quad,1,2,0,2,0,0,0,5,0,1,4,0,0,A way to bypass orphan rule
+4/29/2024 15:39:46,gamedev_commercial_solo,bevy,2,1,0,0,1,0,0,0,0,1,3,0,0,Cross-crate dependency management in a workspace is hard
+4/29/2024 15:41:02,gamedev_serious_hobby,custom,1,3,4,0,0,0,0,0,0,0,3,0,0,"* comptime like Zig (probably impossible)
+* an idea: shared mutable references, e.g. &mut(shared) MyStruct
+  this would allow modifying an integer inside MyStruct, or anything that is Copy (or Rc), but mut(shared) wouldn't be enough to modify a Vec, you would still need to get a &mut for that, probably with RefCell
+  basically this would act as if all fields were Cells (or clone_cell::Cell), but automatically
+* Something that would make it easy to implement a Godot like scene hierachy
+  having arenas and ids for everything is too much work"
+4/29/2024 15:41:55,gamedev_learner,bevy,4,0,2,2,2,0,0,1,1,3,4,0,1,"1) Faster compile times (obviously)
+2) It would be great if rust had a compilation mode that completely relaxes the compiler borrow checker I know that's technically using unsafe everywhere but having such mode would allow for faster prototyping to test ideas out and we use the safe mode after prototyping (but yeah probably will never happen)
+3) A More convenient way to work with global state"
+4/29/2024 15:43:26,gamedev_serious_hobby,bevy,2,2,0,2,2,0,0,1,2,1,3,0,0,I honestly do not know enough about Rust to answer this question. I do not really need to use advanced Rust thanks to bevy (I count that as a serious plus btw).
+4/29/2024 15:43:33,gamedev_casual_hobby,custom,3,0,0,0,0,0,0,2,0,0,0,0,0,"A fast and robust rust-analyzer and reflection. Couldn't even come up with a good third one, hah."
+4/29/2024 15:44:26,tooling_creator,bevy,0,0,0,0,5,0,0,0,0,0,0,0,0,"Coroutine / generator support, more intuitive / fully featured futures, not sure on a good third thing tbh"
+4/29/2024 15:45:12,tooling_creator,bevy,4,0,4,0,5,0,0,0,0,1,3,0,0,"Changing one file in a crate (bevy_render) does not necessitate recompiling the entire crate and all of its dependent crates (bevy_pbr, bevy_sprite, bevy_ui, etc, which themselves has dependents...). Really slows down iteration times."
+4/29/2024 15:45:20,gamedev_serious_hobby,bevy,1,2,2,2,0,0,0,0,0,1,1,0,0,"Syntax, relax borrow checker, dependency bloat"
+4/29/2024 15:45:28,gamedev_learner,bevy,0,1,1,1,5,2,0,5,5,2,2,1,1,dev speed
+4/29/2024 15:45:56,gamedev_learner,bevy,0,0,0,5,5,0,3,2,1,0,4,0,1,"Default argument values , Named Arguments, and Reflection"
+4/29/2024 15:46:09,gamedev_serious_hobby,bevy,0,0,0,0,0,0,0,0,0,0,5,0,0,"Rust is fine, bevy really needs the new UI framework and a good widget library.  I know your're working on it.  Rust in general needs more and better UI frameworks."
+4/29/2024 15:46:56,gamedev_learner,bevy,2,0,0,2,5,0,0,0,0,0,0,0,0,"GUI, GUI, and GUI"
+4/29/2024 15:47:31,gamedev_commercial_solo,custom,3,2,0,0,1,0,0,0,0,0,1,0,2,NA
+4/29/2024 15:47:35,tooling_company,bevy,4,0,0,0,0,0,4,0,0,0,0,0,0,"Variadic functions, runtime reflection, coroutines"
+4/29/2024 15:47:38,gamedev_learner,custom,0,3,4,1,4,1,4,0,0,0,0,1,0,Async calls in GUI that are quite a pain
+4/29/2024 15:48:36,gamedev_casual_hobby,custom,3,2,3,0,0,0,0,0,3,1,0,0,0,"1. Better project management and team leadership to reduce contributor burnout and increase the rate of things receiving proper maintenance.
+2. A clean `wasm32-web` target with proper `std`.
+3. Built-in “self-referential structs”, so it is no longer impossible-without-unsafe-help to write abstractions that wrap certain library types just because they are constructed like `impl Foo { fn bar(&self) -> Bar<'_>; }` and the thing to be abstracted over is the pair of Foo and Bar. ""Just put the borrowed-from thing in a stack variable"" is not a sufficient solution because it lacks composability. It's possible to design libraries that don't have this problem, but all too often that doesn't happen, and it makes the library have to have extra types (OwnedFoo vs. BorrowedFoo) or be generic over pointer types, whereas having the primitive self-referential struct would be a clean and efficient general-purpose abstraction in exactly the same way that `async` blocks + `Pin` already are for self-referential structs whose usage happens to fit the `Future::poll()` shape."
+4/29/2024 15:48:48,gamedev_serious_hobby,bevy,5,0,1,2,3,0,0,4,0,0,2,0,0,compile times only
+4/29/2024 15:48:49,gamedev_commercial_solo,bevy,4,1,0,0,2,0,0,0,0,0,0,0,0,"1) Shorter compile times
+2) Ability to hot reload a small change in a method / function without the need to add crates or alter the code.
+3) Easier way to mix different struct with the same trait (like building Vec/HashMap of structs implementing the X trait and then calling methods of the X trait)"
+4/29/2024 15:49:06,gamedev_serious_hobby,bevy,1,0,0,0,3,1,0,0,1,1,3,1,0,"Error messages >_< ,"
+4/29/2024 15:51:03,gamedev_serious_hobby,bevy,4,1,1,3,4,0,3,5,3,2,4,3,1,Faster compile times
+4/29/2024 15:52:08,gamedev_financial_support,bevy,5,4,3,5,5,5,0,5,0,0,2,2,0,"hot reloading, faster incremental builds, gameplay examples i.e character controller examples, mini-games etc to showcase bevy"
+4/29/2024 15:53:07,gamedev_serious_hobby,bevy,2,1,1,3,3,0,1,1,3,1,1,0,0,"1) Slightly relaxed checks for type aliases are literally the main thing I can think of, and I don’t know how feasible it could actually be (and it’s a relatively small thing)"
+4/29/2024 15:56:01,tooling_creator,custom,2,2,2,3,3,0,2,1,1,1,4,0,0,"Partial borrows, orphan rule, better reflection"
+4/29/2024 15:57:19,gamedev_serious_hobby,bevy,3,0,2,1,5,0,0,0,0,1,5,0,0,"First-class compile-time reflection
+Built in system for live reload of dylibs
+Stabilized std::simd"
+4/29/2024 15:57:48,tooling_creator,custom,1,1,2,1,1,0,2,3,3,0,0,0,0,1. Better conditional compilation mechanisms 2. More ergonomic lifetimes 3. More ergonomic/less verbosa usage of Rc<RefCell<>>
+4/29/2024 16:01:27,gamedev_learner,bevy,5,3,2,3,2,0,0,1,1,1,4,0,2,Windows compile times as good as Linux. Need to use WSL to get decent compile time and rust analyzer experience.
+4/29/2024 16:02:29,gamedev_learner,bevy,5,2,3,0,1,0,3,3,1,0,2,0,1,"compile time, compile time reflection, more debugger support"
+4/29/2024 16:02:51,gamedev_serious_hobby,bevy,2,0,1,0,0,0,0,0,0,1,3,0,1,Variadics
+4/29/2024 16:03:13,gamedev_serious_hobby,bevy,3,1,0,3,1,0,0,0,0,2,2,0,3,easy linked lists and compile time
+4/29/2024 16:04:38,gamedev_financial_support,godot,1,0,2,5,4,3,4,4,3,0,4,3,0,"Getting finally const generics arithmetic in stable
+Being able to have a zig 'comptime' equivalent instead of macros
+A real hope that rust async is one day usable"
+4/29/2024 16:05:32,gamedev_serious_hobby,bevy,3,1,1,2,3,1,2,3,2,1,3,1,1,"compile times, target directory files management"
+4/29/2024 16:07:00,gamedev_serious_hobby,bevy,3,3,1,2,3,0,0,0,0,0,1,5,0,"- Improve build/compilation in order to reduce iteration time;
+
+- Simplify the way to persist state (usage of lifetimes);
+
+- Style-guide docs, or similar, into how to organize the projects' modules;"
+4/29/2024 16:07:56,gamedev_serious_hobby,custom,5,3,4,0,1,1,0,4,5,0,0,4,1,"If I could wave a wand: 
+- compile and link times would come down dramatically
+- the rust toolchain itself would be easier to bootstrap on new platforms. LLVM and the bootstrap process today is fairly hard
+- there would be more focus on crates that DO NOT have very many dependencies at all. It’s very easy to add one crate, and have 120 build dependencies."
+4/29/2024 16:11:01,gamedev_serious_hobby,bevy,2,0,2,0,0,0,3,3,0,0,1,0,0,"better compile times, more jobs in Rust"
+4/29/2024 16:12:06,gamedev_serious_hobby,quad,3,1,2,0,1,0,2,0,1,0,0,4,0,"Improve Compile times, especially for Wgpu based projects. Made the borrow checker more understanding while still being safe, like partial borrows should work across functions."
+4/29/2024 16:15:39,gamedev_learner,bevy,0,1,0,0,0,0,0,0,0,0,0,0,0,Compile time
+4/29/2024 16:16:05,gamedev_serious_hobby,custom,2,1,2,3,1,1,0,3,2,0,0,0,0,"Variadic generics, easier trait object deserialization, compile-time checked interior mutability (probably impossible ;)"
+4/29/2024 16:18:56,gamedev_learner,bevy,5,2,1,3,3,0,2,2,2,1,3,0,0,"1. Not only faster compile time, but make Rust on Windows compile at the same speed as a Linux based system so I don't have to use WSL2 and wait for the cross-compilation step where it to opens a ""Windows"" window instead of the WSL emulated one because the emulation has terrible performance and framerate. Cross-compiling as a whole takes a lot of time.
+
+2. I've heard many people complain about the Orphan rule, so I would try to find a way to get rid of that.
+
+3. I think that, for Rust game development, it would be cool to have a subset of Rust which works with a Garbage Collector, probably by reference counting like GDScript or Swift, so we can use it for easier gameplay logic and UI but also use standard Rust for the Game Engine and tools."
+4/29/2024 16:19:01,tooling_creator,quad,1,0,0,4,4,1,4,3,0,3,2,0,0,"Introspection, stable ABI, specification"
+4/29/2024 16:20:59,other,godot,4,3,0,2,1,0,0,0,0,1,0,0,0,"Debugger understands watches accurately (enums with data, standard containers, etc)
+
+Hot reloading, or reloading of modified code from the debugger
+
+Easier dispatch into enumerators whose values have similar methods"
+4/29/2024 16:21:39,gamedev_commercial_solo,fyrox,1,1,1,3,2,0,2,1,1,1,1,2,0,"Make orphanage rule optional, that's all."
+4/29/2024 16:22:22,gamedev_serious_hobby,bevy,3,1,1,1,1,1,3,0,0,1,4,0,0,"UI library, orphan rules, compile times"
+4/29/2024 16:25:20,gamedev_commercial_solo,bevy,0,0,1,1,3,0,2,0,0,1,1,0,0,N/A
+4/29/2024 16:25:42,gamedev_serious_hobby,bevy,3,0,0,4,4,0,0,0,0,0,3,0,1,Built-in reflection. Fast compile times. Custom diagnostics.
+4/29/2024 16:26:10,gamedev_financial_support,bevy,3,0,0,4,4,1,1,0,0,1,4,0,0,"No problems with Rust itself.
+
+The main one is of course Bevy UI. I’d like it to be much easier and faster to build UI with ready made widgets + other abstractions, ideally so that I just need to quickly wire them up and style. Of course that’s just the ideal. I trust Bevy UI to get there eventually, and already much better in the mid term.
+
+I’d love it if there were a Bevy Editor. Not so much for asset / scene autoring, but more as a first party collection of debug tools (hierarchy, schedule, tracing, system stepping etc). The pieces are there but they take time to setup and of course they’re third party.
+
+I haven’t used Bevy Audio yet, but i suspect it’s currently sufficient, so as the third item, i would love it if Bevy got as close as possible to UE5 for 3D rendering in the next years. I’m using 2D right now but would love to use 3D in my next game. It’s also slowly getting there imo."
+4/29/2024 16:26:23,gamedev_serious_hobby,bevy,1,2,0,1,1,0,0,0,0,0,0,0,0,"1. Some sort of field on traits, like structs."
+4/29/2024 16:28:12,gamedev_financial_support,bevy,0,3,0,1,0,0,0,0,0,1,2,0,0,"Nicer syntax, being able to bribe the borrow checker so it pretends I didn't break the rules"
+4/29/2024 16:29:51,gamedev_learner,bevy,4,0,0,2,3,0,2,1,1,1,2,0,0,"faster compile times, more mature ecosystem and I can't think of a third thing :("
+4/29/2024 16:30:16,gamedev_serious_hobby,bevy,1,0,1,0,0,0,2,1,0,0,1,0,0,Console support
+4/29/2024 16:30:27,gamedev_commercial_solo,custom,1,1,4,1,3,0,4,0,0,0,4,0,1,Generally every rust poisoning feature is a pain to manage/refact
+4/29/2024 16:32:34,gamedev_learner,custom,4,3,3,3,5,4,2,4,5,2,4,3,3,...
+4/29/2024 16:32:39,gamedev_learner,bevy,1,0,1,2,1,1,2,2,2,0,1,0,1,"I would rethink how macros work to something similar to what Zig does.
+Obviously compile times.
+I would love functional Object classes and functors like in OCaml."
+4/29/2024 16:34:12,gamedev_serious_hobby,bevy,2,0,0,1,1,0,0,0,1,0,3,0,0,"Long outstanding things like std SIMD or const generics would get finished. Somehow the community being robust against serde shenanigans like having two independent, popular serialisation crates."
+4/29/2024 16:36:36,gamedev_serious_hobby,bevy,3,3,3,2,5,0,0,1,1,0,1,0,0,less strict mode like go
+4/29/2024 16:37:42,gamedev_serious_hobby,bevy,0,0,0,0,0,0,0,0,0,0,0,0,0,Maybe I'd magically fix myself and finally take the time to learn how to really use lifetimes. I've been writing Rust for years and just haven't had to yet :)
+4/29/2024 16:39:45,other,custom,5,4,2,3,4,2,5,4,0,0,4,4,0,"Hot code reloading, a REPL/interactive environment, borrow checker that handles cyclic data"
+4/29/2024 16:40:37,gamedev_serious_hobby,bevy,4,1,0,4,5,0,0,0,0,0,5,0,2,The only thing to improve is the compilation time and perhaps the orphan rule.
+4/29/2024 16:46:33,gamedev_serious_hobby,bevy,1,1,0,3,3,0,0,2,1,1,4,0,0,"Tooling, compile time, nothing else"
+4/29/2024 16:48:11,gamedev_learner,bevy,4,1,0,3,1,0,3,3,3,0,1,0,1,"Definitely the compile times, however you don't have much runtime problems since most problems I have are caught at compile time or they are logic problems."
+4/29/2024 16:50:44,gamedev_quit,custom,2,3,2,0,2,0,3,0,0,0,0,0,1,i wouldn't since its orthogonal to game development
+4/29/2024 16:53:19,other,bevy,5,5,3,4,5,3,5,5,0,2,3,5,3,"Self referential structs, immutable types, opt-out from borrow checker"
+4/29/2024 16:58:38,gamedev_commercial_solo,bevy,5,3,0,3,0,0,0,0,0,0,1,0,0,"make rust analyzer faster, nicer to use, and generally less cursed : )"
+4/29/2024 17:01:10,other,quad,4,5,4,5,1,0,0,0,0,2,4,0,0,A way to build games without using ECS.
+4/29/2024 17:04:41,gamedev_serious_hobby,bevy,4,0,0,3,0,0,0,0,0,0,0,0,0,"Introspection, More Type operations, get effects under control"
+4/29/2024 17:08:25,gamedev_serious_hobby,bevy,3,4,4,1,5,3,5,5,3,2,5,1,2,"Compile time reflection, Allow foreign/foreign trait impls if one there are no conflicting implementations, more intelligible macro syntax"
+4/29/2024 17:11:55,gamedev_learner,bevy,2,0,0,3,5,0,0,0,0,0,4,0,0,Better bevy ui support
+4/29/2024 17:19:01,gamedev_financial_support,bevy,1,0,1,1,2,1,1,2,2,0,2,1,1,"Faster compile times, is my top complain."
+4/29/2024 17:20:28,gamedev_serious_hobby,bevy,3,0,0,2,3,0,0,0,0,0,2,0,0,"Either compile time reflection for non-macro metaprogramming, or better iteration speed, either through increased compiler speed or hot reloading."
+4/29/2024 17:20:58,gamedev_serious_hobby,bevy,4,2,0,1,2,0,0,1,2,0,1,0,2,"Compile Times, Tooling beyond VSCode"
+4/29/2024 17:21:20,gamedev_serious_hobby,bevy,0,5,5,0,0,0,0,0,0,0,0,0,0,"Add variadic generics; this would be huge for ECS and other applications that use static dispatch (similar to C++ std::variant with std::visit). Finalize and stabilize allocator-aware collections (again, this exists in C++). Improve async/await support in the standard library (things like async I/O, waiting on OS fences, and waiting on jobs running in multithreaded executors. Like Swift structured concurrency)"
+4/29/2024 17:23:18,tooling_company,bevy,3,1,1,1,2,0,1,4,3,1,4,1,1,Compilation time. GUI with hotreload. true full stack
+4/29/2024 17:23:51,gamedev_quit,custom,4,4,4,2,2,3,5,4,3,2,1,4,2,"Compile Times, Console Support, Saner Borrow Checker"
+4/29/2024 17:25:58,gamedev_learner,bevy,1,1,1,4,4,1,0,0,0,1,3,0,2,Better support for constants in types and ranges and math. Less reliance on unstable and feature flags for fancier type related things. Faster compile times.
+4/29/2024 17:27:41,gamedev_financial_support,bevy_extra,2,3,2,4,3,2,3,1,1,2,4,3,0,"specialization, rust-analyzer, reflection, proc-macro compile time cost, rust-gpu/spir-v backend, std::simd"
+4/29/2024 17:27:53,tooling_creator,custom,5,0,1,0,0,0,0,0,2,0,3,0,0,Shorter compile times. Remove exception based control flow for wasm-bindgen. More seamless dynamic linking (hot reload).
+4/29/2024 17:29:29,gamedev_financial_support,bevy,5,0,0,5,0,1,1,5,2,0,5,0,0,"Hot reload,"
+4/29/2024 17:31:45,gamedev_serious_hobby,bevy,2,0,2,2,4,1,5,5,4,1,3,0,0,no th ing
+4/29/2024 17:33:45,gamedev_serious_hobby,bevy,1,0,0,4,2,0,0,0,0,0,3,0,0,"Orphan rule, better automatic life time detection"
+4/29/2024 17:34:21,gamedev_learner,bevy,0,0,1,2,3,0,0,0,0,0,1,0,0,"More functional features, lower compile times, and a smart way of integrating so/dll files as the primary library for crates."
+4/29/2024 17:38:44,gamedev_financial_support,quad,1,1,2,2,1,0,0,0,4,0,5,4,0,The orphan rules.
+4/29/2024 17:41:18,gamedev_learner,bevy,3,4,0,4,2,0,0,0,0,0,3,0,0,"A Rust “mode” or dialect for prototyping, with relaxed ceremony, e.g. global inference, Arc for all references, something like that"
+4/29/2024 17:41:47,gamedev_serious_hobby,bevy,3,1,1,2,3,0,2,1,1,1,3,0,1,"- No more explicit lifetime requirements (smarter compiler)
+- Faster compile times
+- improved IDE and code completion (sometimes they get confused)"
+4/29/2024 17:42:24,other,custom,1,0,2,2,3,0,1,2,2,0,0,0,0,"Easier and better documented libstd porting (especially to non-Unix-based targets), some kind of rapid iteration mode (like that old Cranelift ~PoC-level JIT functionality), graphics support in libstd (I'm not sure that this would be a good idea in general but it'd definitely be helpful for gamedev)"
+4/29/2024 17:43:28,gamedev_financial_support,custom,5,1,4,1,4,2,2,1,1,0,0,1,0,Ecosystem for GUI Development
+4/29/2024 17:43:58,gamedev_learner,bevy,4,2,0,3,0,0,1,4,0,0,4,0,0,"Faster compile times, ""simpler"" borrowing of game objects/assets etc for reading/mutation."
+4/29/2024 17:47:46,tooling_creator,custom,0,5,3,0,5,0,5,1,0,0,0,0,0,"Convince the core team to return to rust as a “systems” programming language that competes with C and C++ in scenarios where there are few other options. Things like custom allocator support, embedded and OS level development. But instead they seem hell-bent on web technologies and async. It seems like anything that isn’t async related has been left to rot."
+4/29/2024 17:49:07,gamedev_financial_support,bevy,5,2,1,1,4,0,0,5,0,0,3,0,2,"Fast compiles, compile-time reflection, `if let` chains"
+4/29/2024 17:49:15,gamedev_learner,bevy,4,0,2,3,2,0,1,0,1,0,2,0,0,"Move trait instead of pin, less strict coherence, built in async executor & related traits"
+4/29/2024 17:51:41,gamedev_financial_support,bevy,2,0,5,2,5,2,3,4,4,1,4,2,0,"Non macro meta programming, compile time reflection and introspection"
+4/29/2024 17:51:57,tooling_company,bevy,2,0,4,1,1,0,0,5,5,1,4,0,0,"#70263, specialization."
+4/29/2024 17:55:10,tooling_creator,quad,5,3,0,5,5,0,1,2,1,3,3,0,0,"Compile times, better docs for OpenGL/wgpu etc., difficulty to iterate due to the borrow checker"
+4/29/2024 17:57:27,gamedev_learner,bevy,4,2,1,4,5,1,1,1,2,3,5,2,2,And visual editor or scene composer
+4/29/2024 18:03:45,gamedev_serious_hobby,bevy,4,3,1,2,3,0,4,2,2,0,2,0,1,JIT version
+4/29/2024 18:06:12,gamedev_financial_support,bevy,2,1,1,1,5,0,2,3,0,0,5,0,0,"Adding garbage collection, improving asynchronous Rust, and reducing compilation time."
+4/29/2024 18:07:53,gamedev_serious_hobby,bevy,4,0,0,0,4,0,2,0,0,1,4,1,0,"Fix the function coloring problem with async, compile time reflection, eliminate compile time stemming from macros"
+4/29/2024 18:09:25,gamedev_casual_hobby,quad,1,1,3,5,2,0,0,4,2,0,3,0,0,"- newtype
+- less 'static lifetime restrictions
+- unified async interface in standard library"
+4/29/2024 18:15:15,gamedev_quit,bevy,4,0,0,3,0,0,5,3,3,0,4,0,0,"Compile times, more mature ecosystem (v1 and higher crate versions) and better docs (/examples folder aren't docs)"
+4/29/2024 18:16:55,gamedev_serious_hobby,custom,0,0,0,2,0,0,0,0,0,0,0,0,0,"Generators (in the sense of iterators but written as a function that yields values), more kinds of stuff accepted as generic parameters, and mmm wider adoption (sorry if that is cheating >_<)"
+4/29/2024 18:17:03,gamedev_learner,bevy,4,1,0,5,3,0,0,1,2,1,4,0,0,"- Faster compilation
+- Less lifetime confusion
+- Fewer really difficult to use/understand crates"
+4/29/2024 18:19:09,gamedev_serious_hobby,bevy,0,0,2,1,2,0,2,2,2,0,2,2,0,More devs
+4/29/2024 18:19:55,gamedev_learner,bevy,5,0,1,4,5,1,0,1,2,3,3,3,0,Builds taking up hundreds of GB on my HDD for trying example projects
+4/29/2024 18:21:44,gamedev_commercial_solo,bevy_extra,2,2,4,5,4,4,0,0,0,2,3,0,1,"I would love if there was a scripting language with most of the features of rust but without the complexity, sorta like C# is to Rust. It'd keep most, if not all of the syntax, but it would add a garbage collector as well as a borrow checker (when the borrow checker fails, it falls back to a garbage collector) and allow for aliases mutable references on the same thread.
+There are a lot of nightly features I have wished I could reach for but have been unable to because there's still some discussion over naming (e.g is_some_and) or there have been no comments on the github issue in years. I understand why it can be so slow to add features into the compiler or stdlib, but it is. So annoying when something you need to get the job done is locked behind nightly. Usually it's not possible to do it without the feature either, even with more or unsafe code. It's possible to make thin dyn pointers without ptr_meta but because align_of_raw is not stabilized yet it's not possible without using undefined behavior or increasing the size of the thin pointer."
+4/29/2024 18:26:00,gamedev_learner,bevy,2,0,0,3,3,0,0,0,0,1,1,1,0,"Easy delegation, generators, crate / package split (orphan rule only at package boundaries?)"
+4/29/2024 18:28:44,gamedev_quit,bevy,5,5,2,3,3,0,0,0,0,3,3,1,2,"Compile times, hot reloading, maturity (stabilized eco-system and best practices)"
+4/29/2024 18:28:58,other,custom,0,0,0,5,5,0,2,3,0,5,5,0,0,please add a level editor…
+4/29/2024 18:30:28,tooling_creator,custom,2,5,0,0,3,0,2,3,1,0,0,0,0,"Generative Macros, so I can collect a set of tagged functions and insert them into a codeblock. Like automatic discovery of in game command line commands.
+
+Reflection. Reflection and Introspection (even by traits and derive macro) are a pain.
+
+Type Discovery. So I can automatically register types ans reflect on them. I.e. user code can then live in a crate and it is easy to build an inspector UI without some weird workarounds."
+4/29/2024 18:30:44,tooling_creator,nannou,1,0,2,5,2,2,1,2,3,1,3,0,0,compile times
+4/29/2024 18:36:39,other,bevy,0,1,3,3,0,0,0,0,3,3,3,0,0,"solve the serde-alternative scaling issue, effect system, variadics"
+4/29/2024 18:36:43,tooling_creator,bevy,3,3,1,3,5,1,3,1,1,1,5,0,1,Faster compile times. Single agreed upon async runtime.
+4/29/2024 19:07:14,gamedev_commercial_solo,bevy,3,2,2,3,5,0,1,0,3,2,4,0,5,"Smarter borrow checker, stable abi, compile time reflection"
+4/29/2024 19:09:18,gamedev_learner,comfy,3,3,4,5,4,1,1,3,4,5,2,2,4,"the three things its. Immature mobile support,Long compile and iteration times,Poor tooling for artists and game designers then the learning and docks"
+4/29/2024 19:22:02,gamedev_financial_support,quad,5,4,2,1,1,2,3,0,1,2,0,0,0,"1) Reliable hot reloading without caveats (see liveplusplus.tech e.g. https://internals.rust-lang.org/t/trying-to-make-live-support-rust/16519 ) 2) Partial borrows, or alternatively ""I know what I'm doing here so just let me have many mutable references at once without UB please"" mode (i.e. turn off noalias expectation inside a lexical scope) 3) An Unsafecell variant that is Copy."
+4/29/2024 19:33:37,tooling_creator,bevy,5,2,2,3,4,1,3,1,1,3,4,2,2,"Faster compile times, faster rust-analyzer, more UI tooling"
+4/29/2024 19:33:54,gamedev_learner,bevy,0,0,4,5,5,0,0,0,0,0,4,0,0,How to use traits for idiomatic code suggestions
+4/29/2024 19:34:34,gamedev_learner,bevy,5,5,3,3,5,2,2,2,0,2,4,1,2,"Debugging support, compile times, having more and more ergonomic ways of avoiding borrow checker when you know what you're doing."
+4/29/2024 19:40:55,gamedev_serious_hobby,bevy,4,1,3,3,0,0,1,0,1,0,4,0,1,"Dynamic code generation, better abstractions over tuples"
+4/29/2024 19:42:41,tooling_company,bevy,3,1,0,1,0,0,0,0,0,1,2,3,0,Better caching for compile times/features. Better async errors. Rust AI benchmark to improve LLM performance for Rust.
+4/29/2024 19:44:05,gamedev_serious_hobby,bevy,1,3,2,1,4,1,2,3,3,1,3,4,0,"- disable borrow checker for single threaded apps, i.e. to pass multiple mutable references
+- easier bridging async to sync code instead of having to use quasi actors/channels
+- allow multi threaded apps to magically compile to wasm environment (running single threaded but concurrently)"
+4/29/2024 19:50:39,other,bevy,0,0,3,1,4,3,3,4,2,1,3,3,1,"Compile time reflection, enum variants are types, opt in/out orphan rules, better trait solver, specialization"
+4/29/2024 19:55:44,gamedev_learner,bevy,2,0,0,4,0,0,0,0,0,1,2,0,0,Idk
+4/29/2024 20:16:32,gamedev_learner,bevy,4,0,0,1,0,0,0,0,0,0,0,0,0,Make explorative programming less time-consuming (Maybe profiles could help?). Support for type-driven metaprogramming (Reflection or Zig-like comptime?). Less privileged standard library and more extensible tooling (e.g. custom lints and replacable prelude).
+4/29/2024 20:16:50,other,bevy,2,0,1,2,1,0,0,3,1,0,1,0,4,"Better ways to support rust-analyzer in macros, a way to have a tuple of things that implement a trait as a native feature for better errors and compile time reflection"
+4/29/2024 20:25:07,gamedev_serious_hobby,custom,1,1,4,2,0,0,0,2,0,0,1,0,1,"- Stable ABI.
+- Robust JIT compilation or a much smaller toolchain to package alongside launcher binary to compile source files like the JVM / CLR. (Modding with turtles all the way down! I feel that just embedding lua is a huge missed opportunity)
+- Make Box<T; N> *always* initialise on the heap and not cause stack overflow in debug mode, and by extension not have to use the vec!.into_boxed_slice() hack."
+4/29/2024 20:39:43,gamedev_commercial_solo,bevy,3,0,1,1,3,0,1,3,1,0,2,0,0,"faster compile times, smaller build artifacts (it's 100s of GBs after a while without cleaning"
+4/29/2024 20:45:11,other,bevy,5,4,3,3,5,2,5,5,4,4,4,2,3,"Easier to prototype things.
+Faster compilation time.
+GC"
+4/29/2024 20:47:03,gamedev_learner,bevy,2,3,3,4,5,3,3,0,1,2,5,2,1,"Enable Partial Borrows - Not being able to partial borrow causes a ton of refactoring headaches, even when it's the partial borrow doesn't overlap with another partial borrow. I understand this is a hard problem to fix, or may be better served by some best practices or infrastructure that makes doing this easier.
+
+Fix (be able to ignore) Newtype idioms - Causes a lot of coding overhead to create newtypes every time a type from dependency A is used in dependency B. This is totally a required solve in libraries for open-source. But I'm building application software, I don't have to care because they will be the only instances of these types. I feel good about proposals to turn the requirement off.
+
+Fix Feature Flags - Need mutually exclusive features for client / server builds. Require the capacity to be subtractive (not shipping server code in the client). Conditional compilation isn't well supported by tools (cargo check false positives a lot). Need to be able to support different kinds of builds: server, client, debug, test, profile, release_with_inspection, release.
+
+Bonus points to figure out how to canonically well-support UI and Hot-Reloading. I'd prioritize that over the above, save maybe partial borrows. But those aren't ""things about Rust itself"""
+4/29/2024 20:48:10,tooling_company,custom,2,1,0,1,0,0,0,0,0,0,1,0,0,"There needs to be a way to construct an Instant from raw system time, refinement types"
+4/29/2024 20:54:19,gamedev_financial_support,custom,2,0,1,0,4,0,4,0,0,0,4,0,0,"The language is great, only needs more focus on games - especially among the engine devs. Dogfooding ftw."
+4/29/2024 21:08:07,gamedev_serious_hobby,bevy,3,2,3,2,2,0,0,5,2,2,4,0,2,"Compile times, rust-analyzer memory footprint, better debug/perf tooling for windows"
+4/29/2024 21:09:02,gamedev_learner,bevy,4,0,0,2,0,0,0,0,0,0,0,0,0,"Faster compile times, better LSP support in general (Rust analyzer can be slow or not work right), simpler macros"
+4/29/2024 21:14:15,gamedev_financial_support,bevy,4,2,3,5,4,1,5,4,1,2,3,5,0,Improve crates maturity
+4/29/2024 21:14:25,gamedev_serious_hobby,custom,2,2,2,1,0,0,0,0,3,0,0,0,0,"Perfect const expression evaluation (c++ levels of tmp)
+Stabalization of rustfmt features
+Variadic generics"
+4/29/2024 21:18:06,gamedev_financial_support,bevy,2,1,1,2,5,1,0,0,0,2,5,0,0,"Compiler support enforcing certain optimisations, eg compile error if bounds checks didn't get removed here.
+
+More support for writing rust tooling. I wrote this proof of concept the other week (https://github.com/tbillington/bevy_game_docs), it would be awesome to make it easier to consume output of tools like rustdoc or to build editor integrations so I can project specific info/lints/suggestions.
+
+More const (eg array_chunks) available/in stable."
+4/29/2024 21:20:13,gamedev_casual_hobby,raylib,5,3,0,5,5,0,0,1,4,0,1,0,1,"I wish Rust had more functionality in the standard lib rather relying on third party packages which take up huge swathes of the ecosystem.
+I also wish that lifetimes werent an infectious constraint. requiring that all types that use values with lifetimes also have to specify a lifetime.
+I wish hot reloading and dynlib wasnt such a pain
+"
+4/29/2024 21:32:40,tooling_company,bevy,4,1,3,5,5,0,0,4,1,0,4,0,2,"The nuke the orphan rule, stabilize portable SIMD, remove the stereotype of the rust developer community as evangelical hype-chasers rather than serious engineers."
+4/29/2024 21:34:12,gamedev_serious_hobby,bevy,1,1,0,0,0,1,0,0,0,1,2,0,0,"compile faster, better brrow checker, more ergonomic Syntax"
+4/29/2024 21:51:32,gamedev_serious_hobby,bevy,1,1,1,3,5,0,0,5,3,3,5,2,2,"Easier macros, Effects"
+4/29/2024 22:00:10,gamedev_serious_hobby,custom,0,2,1,2,3,1,0,2,3,0,1,3,0,ui
+4/29/2024 22:13:42,tooling_creator,custom,0,0,0,0,0,0,0,0,0,0,0,0,0,https://github.com/rustwasm/team/issues/291
+4/29/2024 22:48:50,other,bevy,1,1,0,3,4,2,1,1,1,1,4,0,0,"More time, an asset format for bevy."
+4/29/2024 22:55:00,gamedev_serious_hobby,bevy,0,0,0,0,0,0,0,2,2,0,0,0,1,"I wish lifetimes were more intuitive, I wish lifetimes were inferred in more cases, i wish the lifetime syntax was less ugly."
+4/29/2024 23:24:21,gamedev_financial_support,custom,2,1,3,3,3,0,0,0,0,0,1,5,0,"1. A guarantee that we stop adding features for several years, and focus on becoming the most robust and stable systems programming language in existence. We are steadily slipping towards becoming another C++ with amount of shiny things (async, macros) we are pushing into the language. It is already hard to onboard experienced developers into the language as it is, and if we keep adding a new thing every 2-3 years we will very quickly just be another mess of sixty different ways to do something that could or probably should just be done in one way.
+2. Some sort of officially developed and maintained debugging tool for visualising lifetimes at a project/workspace level. I think I'm pretty good with Rust lifetimes, I actually adore them and the explicitness in general that comes with the benefit of ownership and lifetimes... but when I'm nested very deep into something I too can struggle to immediately build an accurate mental model of what is happening on the fly. A real time, comprehensive visualiser that can show my primitive monkey brain: ""look, here, here, and then here. These files, these lines, these objects have these restrictions and you're not obeying them.""
+3. A new mascot dammit. Ferris is yuck. It could have been a cayuuuute robot dog. We could have been called rustrievers instead of rustaceans. We owe it to ourselves."
+4/30/2024 0:00:27,gamedev_serious_hobby,bevy,5,2,0,3,5,1,2,0,0,1,4,0,0,"Add reflection, something (not sure what exactly) about lifetime propagation in types that fixes the need to make drastic changes ech time a lifetime appears in a type, proc macros in the same crate as everything else."
+4/30/2024 0:11:24,tooling_creator,custom,0,3,0,0,0,0,3,0,0,0,0,3,0,"stabilize build std or move more tier 3 targets up to tier 2, mut references in const fn, and a pony"
+4/30/2024 0:17:21,other,custom,2,4,0,0,3,0,0,0,1,3,4,0,0,"1. Partial borrows, with a clean syntax
+2. Necessary language features (HKTs) to support static entity-component libraries (i.e. ECS without the ducktyping)
+3. A popular/mainstream engine that doesn't insist on using ECS as the magical solution to every problem"
+4/30/2024 0:27:20,gamedev_financial_support,custom,0,0,3,1,3,3,0,5,0,0,0,0,0,"1. To improve documentation on how to start contributing to the project language
+2. Better documentation on how to work with macros
+3. I think a visualization tool for how to use certain crates (for example, getting started with wgpu is really hard without any proper guide, a graph visualization showing how all the struct/enums connect to each other, I think that can help a lot when learning a new crate and especially the standar library)"
+4/30/2024 0:32:43,gamedev_commercial_solo,custom,5,0,3,4,0,0,0,0,0,0,0,0,0,"Instant compiles
+Hot reload
+Top class debugger, with rr-like timetravel"
+4/30/2024 0:38:34,gamedev_serious_hobby,bevy,4,2,4,0,4,0,1,5,2,2,4,1,0,"1) impl !Drop for linear types, I want async drop!
+2) does compile times count?
+3) Variadics"
+4/30/2024 0:40:25,gamedev_serious_hobby,bevy,0,0,0,3,4,1,0,0,1,0,2,0,0,"Rust is perfect, i am the weak link."
+4/30/2024 0:45:44,gamedev_learner,bevy,2,0,0,1,0,0,0,0,2,0,0,0,0,"I'd get the |> pipe operator from Elixir (idk how this might actually work or if it would be good), some kind of dynamic linking/plugin system that can hot-reload during dev, and expanding the types of safe behaviors the borrow-checker knows about since it doesn't always know everything"
+4/30/2024 0:51:18,gamedev_serious_hobby,quad,2,1,0,0,1,0,0,0,0,0,0,1,0,"Proper coroutines that can be serialized, impl specialization, first-class REPL"
+4/30/2024 0:59:08,tooling_creator,gamercade,1,0,3,0,0,1,0,0,0,0,0,4,0,"Faster compile times.
+
+More usage in the games industry.
+
+More access to funding in open source in general."
+4/30/2024 1:04:57,gamedev_learner,quad,2,1,1,5,5,0,0,2,0,0,1,1,0,"1. Fast Compile Time
+2. Fast LSP Rust Analyzer
+3. Maybe better async but it is still very good."
+4/30/2024 1:07:44,gamedev_serious_hobby,bevy,4,1,0,1,0,0,2,0,2,2,2,0,0,Faster compile times
+4/30/2024 1:24:05,gamedev_serious_hobby,bevy,4,1,2,1,1,3,1,0,0,1,5,2,2,"Compile times (hot reloading, linking), generators, specialisation"
+4/30/2024 1:28:56,gamedev_learner,bevy,3,0,0,0,0,0,0,0,5,0,0,0,0,"Orphan rule.Debug mode ""compile anyway "" flag."
+4/30/2024 1:40:49,tooling_creator,bevy,3,1,2,4,2,1,2,3,1,3,4,0,2,"Compile time, can custom errors easily and hot reload for structs and enums"
+4/30/2024 1:47:34,gamedev_learner,none,0,1,0,2,1,2,3,2,4,0,0,4,0,"be able to run, almost, everythin at compile time x3"
+4/30/2024 2:04:40,gamedev_financial_support,custom,1,0,2,3,5,3,5,3,0,2,5,2,0,Make iteration speed 10x faster. Hot reloading of any rust code.
+4/30/2024 2:29:59,gamedev_commercial_solo,bevy,3,3,1,3,3,1,0,2,0,1,3,1,0,Possibility of telling Borrow Checker that I'll fix this later
+4/30/2024 2:35:16,gamedev_commercial_solo,godot,3,3,0,1,4,1,1,4,0,0,4,4,0,"(1) Optional parameters: Builder pattern and creating multiple methods for the same purpose with different parameter requirements lead to massive boilerplate code. This consumes a lot of energy that could have been used for creative tasks.
+
+(2) Orphan Rule: Amidst the numerous debates around this topic, my personal hope is to ""Ease it for non-published crates or binary crates"". This could be achieved by:
+   - Adding a ""no_orphan_rule"" field in the project section of Cargo.toml.
+   - If the ""no_pub"" field is true, allow bypassing the orphan rule, limiting it to publishing on Crates.io.
+   - Still allow publishing to private registries that are configured to allow crates with the ""no_orphan_rule"" field set.
+
+(3) Partial struct borrow(at least, for unexposed APIs)."
+4/30/2024 2:44:03,other,bevy,1,0,1,3,2,0,1,0,0,1,2,0,0,"Rust projects like to reinvent the wheel, many times our of necessity. However this leads to the solutions often being immature, e.g. shader languages with poor documentation and few examples. This is a necessary pain of improving the landscape, but in the interim it's quite frustrating"
+4/30/2024 2:49:05,other,bevy,4,4,3,3,0,1,0,0,0,1,2,2,0,"Orphan rule, partial borrows, incremental compile times. Yeah I know this is basically what loglog said but they are absolutely right"
+4/30/2024 2:49:51,gamedev_learner,bevy,4,4,0,0,5,0,0,0,0,0,5,0,3,"Fix the ugly syntax, Fix the ugly syntax, Fix the ugly syntax"
+4/30/2024 2:59:06,gamedev_learner,bevy,0,0,2,5,1,3,3,3,0,2,4,0,0,Bevy UI library that's easy to use.
+4/30/2024 3:04:35,gamedev_learner,bevy,1,0,2,5,2,0,0,0,0,0,2,0,0,"NIL, Rust is fine"
+4/30/2024 3:05:55,other,bevy,4,0,0,2,2,0,1,1,1,1,1,0,0,"Compile time,  target dir size"
+4/30/2024 3:10:48,gamedev_serious_hobby,bevy,2,1,1,3,3,0,2,5,3,0,4,0,0,"better async, faster compile"
+4/30/2024 3:16:55,gamedev_serious_hobby,bevy,0,0,1,2,2,0,0,1,0,0,4,1,4,"Better ffi between rust and c, or rust and wasm
+Faster compile times
+Plugin support"
+4/30/2024 3:20:35,gamedev_commercial_solo,custom,5,5,4,0,5,2,3,3,3,0,1,0,0,"Faster Compile Times, first class support for pointers in unsafe (e.g. automatic dereferencing), stronger memory guarantees for the layout of trait objects and structs."
+4/30/2024 3:35:49,gamedev_financial_support,bevy,4,2,3,4,3,1,0,3,1,1,5,0,1,"script lang support(like lua), editor, hot reloading."
+4/30/2024 3:35:40,gamedev_learner,bevy,1,1,3,5,3,3,1,4,4,1,4,1,2,"I am not an expert in the Rust language, so I cannot provide good advice"
+4/30/2024 3:48:27,tooling_creator,custom,1,0,2,2,0,0,0,0,0,0,2,0,0,idk
+4/30/2024 3:59:29,other,bevy,4,2,1,3,5,1,2,4,0,0,5,4,0,"- Faster compile and iteration time. 
+- And editor and more tooling for assets management and editor Ui. 
+- Better parallel programming support."
+4/30/2024 3:59:55,gamedev_commercial_solo,bevy,2,0,2,0,1,0,1,0,0,2,2,0,0,"Other than compile times, Rust as a language is perfect for my gamedev use cases. I just wish to see more built-in features in Bevy and more stable GPU abstraction layers. I released a game written in Rust on Steam last year and I keep receiving a ton of crash reports from players related to wgpu. As an indie dev, it is very difficult to make sure my game works properly on all system configurations."
+4/30/2024 4:08:47,tooling_company,hotham,1,1,1,3,5,1,1,0,2,2,1,0,1,"Tooling for debugging and performance analysis
+Learning resources
+Simplified package management and dependency resolution"
+4/30/2024 4:15:05,gamedev_learner,bevy,4,3,4,2,3,2,3,5,3,3,2,4,3,"Compile Time, compatibility with parity on Android as well and maybe more schools teaching Rust or ease of Learning for the masses so there are more people who know Rust."
+4/30/2024 4:18:47,gamedev_learner,bevy,1,0,0,1,1,0,0,0,0,0,5,0,0,"Reflection, remove lifetimes, faster compile times"
+4/30/2024 4:29:07,gamedev_learner,bevy,0,0,0,1,2,0,0,0,0,1,4,0,0,Rust is great.
+4/30/2024 4:49:09,gamedev_serious_hobby,custom,4,0,0,5,2,0,1,1,1,4,5,0,3,idk
+4/30/2024 4:54:20,gamedev_financial_support,custom,3,1,1,0,0,0,0,2,0,0,0,0,0,"algebraic effects, fast compilation mode (sacrifice more performance for faster compilation, use dynamic dispatch where possible)"
+4/30/2024 4:55:00,gamedev_serious_hobby,bevy,3,2,0,2,4,1,1,2,1,0,4,0,0,Partial borrows of structs
+4/30/2024 4:59:47,other,custom,5,5,3,5,4,2,4,4,4,3,4,3,2,"the syntax, the syntax, the syntax"
+4/30/2024 5:08:24,gamedev_serious_hobby,bevy,5,3,4,3,3,3,3,5,3,3,5,0,3,Official VR/OpenXR support
+4/30/2024 5:08:37,gamedev_financial_support,bevy,2,2,1,0,3,0,0,0,0,0,0,0,1,"Runtime compilation and code execution. Ie: rust code hotreloading.
+The orphan rule.
+Reflection/type system level information in proc macros.
+"
+4/30/2024 5:09:50,gamedev_commercial_solo,bevy,0,2,0,0,3,0,0,4,0,1,3,0,1,"Variadic generics, streaming iterators, some way to opt out of orphan rules"
+4/30/2024 5:10:22,gamedev_learner,bevy,3,0,0,5,5,0,1,1,0,0,5,0,0,"Rust and its tooling is very well enginnered.  but if i could
+1. Compile time 
+2. Faster LSP
+3. (for rust community) Mature Frameworks or Libs and educational resources to build high level Apps (games, webapp) unlike cli, compilers,  os ... specially for self taught programmers"
+4/30/2024 5:32:44,gamedev_commercial_solo,custom,5,0,0,1,0,0,0,0,0,0,1,0,0,"- Async function coloring, really ...
+- More guarantee about Stable ABI, so we can do plugins without recompiling them with the right rustc version every time.
+"
+4/30/2024 5:40:24,gamedev_commercial_solo,custom,0,2,0,0,0,0,0,0,0,0,0,3,0,"Just one: libraries, STOP ITERATING A NEW VERSION EVERY 2 MONTHS AND FOCUS ON A STABLE 1.0 ; most libraries are unusable in production because they always break their API within months, unthinkable to support that as a solo dev"
+4/30/2024 5:57:38,gamedev_learner,bevy,2,0,0,1,0,0,1,0,0,1,1,0,0,"- faster compile times (when you use Go for 10 years you are shocked that rust doesn’t have the same speed)
+- faster and stable rust analyser (coming from Go I’m slower because RA is slow and always checking and sometimes doesn’t work)
+- debugging (still haven’t managed to get VS Code rust debugging working but need to try harder—that said in Go it just works it seems)"
+4/30/2024 6:21:34,gamedev_financial_support,none,4,1,1,0,0,0,0,0,0,0,4,0,0,"1) Improve documentation and support for hot code reloading to support faster iteration time and to avoid misconception that it is not possible in rust.
+
+2) Improve the performance of rust-analyzer, cargo clippy and/or make sure that user can easily find the reason why incremental validations doesn't work.   (Each time whole workspace is rechecked unecessary and it is hard to find the reason why, takes up a lot of time when refactoring code)
+
+3) Implement feature (adt_const_params) for complex types for const parameters (https://doc.rust-lang.org/beta/unstable-book/language-features/adt-const-params.html)
+
+"
+4/30/2024 6:28:04,gamedev_commercial_solo,bevy,4,0,0,2,0,0,1,1,0,1,2,0,0,async dynamic disptach
+4/30/2024 6:48:24,gamedev_serious_hobby,custom,0,2,3,0,0,0,0,0,0,0,0,0,0,"Add features to better support creating safe bindings to external APIs with minimal overhead such as better stable const generics, or more ergonomic branded types"
+4/30/2024 6:55:17,gamedev_serious_hobby,bevy,1,1,0,5,1,0,1,0,0,0,3,0,0,...
+4/30/2024 6:58:06,gamedev_commercial_solo,bevy,1,1,2,0,4,0,1,2,3,1,0,0,0,"Better tooling, compilation times, and web support"
+4/30/2024 7:32:56,other,custom,0,0,1,0,0,0,2,1,1,0,0,2,0,"1. Add support for inheritance
+2. Remove rustfmts love for saving vertical space
+3. Allow partial borrows via accessor functions"
+4/30/2024 7:43:30,gamedev_serious_hobby,bevy,2,1,0,2,3,0,2,0,2,1,4,0,0,"- Compilation times
+- Compile-time reflection
+- Polonius"
+4/30/2024 8:02:21,gamedev_learner,bevy,5,4,4,4,4,3,0,0,0,4,3,0,5,"Improve consistency - less unnecessary variety in all the traits and types and other aspects you have to learn for every use case, and less of a need to be unsafe in so many cases. Also, compile times and project sizes are rather extreme. And better native async."
+4/30/2024 8:04:14,tooling_creator,bevy,1,1,0,2,2,0,0,0,1,0,3,0,0,"Variadics, const_generic_exprs, min_specialization"
+4/30/2024 8:19:18,tooling_creator,godot,1,1,3,1,0,0,0,0,0,0,1,0,0,"Compile time reflexion, easier (or automatic) lifetimes, easier async rust"
+4/30/2024 8:45:03,gamedev_learner,bevy,3,0,0,2,5,0,0,3,5,2,0,0,0,?
+4/30/2024 8:50:27,gamedev_commercial_solo,bevy,5,5,0,4,0,2,0,0,0,0,2,1,0,"Rust was clearly designed with a safety obsession, it seems suitable for re-writing old codebases where the functionality is already fleshed out, it seems fundamentally unsuited for the rapid iteration cycles game dev requires due to that. Rust is fundamentally unsuited for game development."
+4/30/2024 8:57:35,tooling_company,bevy,4,2,5,3,5,0,0,2,5,5,5,2,5,"- reflection 
+- better way to work with dynamic typing and avoiding the borrow checker (I miss GC)
+"
+4/30/2024 8:58:14,gamedev_learner,bevy,4,1,4,5,5,0,3,5,2,1,4,2,1,"Rust is fine, I need more tutorials/examples about 3D games with Bevy."
+4/30/2024 9:00:53,tooling_company,fyrox,0,2,3,1,5,4,4,4,5,3,4,5,5,"compile time
+orphan rule in workspace
+too much code  like impl <T> for <T> like why there is two <T> required. And, types get complicated and duplicated everywhere."
+4/30/2024 9:14:06,gamedev_serious_hobby,bevy,2,0,0,2,5,0,0,0,0,1,5,0,0,"ui, rendering features, iteration time"
+4/30/2024 9:30:15,gamedev_serious_hobby,none,3,0,0,0,2,0,0,0,0,0,4,0,0,"From my point of view, Rust is pretty neat as it is :sweat_smile:"
+4/30/2024 9:30:38,gamedev_serious_hobby,bevy,2,0,1,2,3,0,0,0,0,0,1,0,0,Compile time might be the biggest issue. Hot reloading (even more true for UI heavy games).
+4/30/2024 9:43:19,tooling_company,bevy,4,2,2,0,4,0,0,0,3,2,4,0,2,"Rust Analyzer performance + robustness, faster build times, coroutines that only temporarily bind to parameters between await points."
+4/30/2024 9:44:32,gamedev_learner,bevy,4,3,3,1,4,0,0,2,0,1,2,0,0,/
+4/30/2024 9:44:57,gamedev_serious_hobby,quad,5,0,0,5,1,0,0,0,2,0,5,0,0,"In order: a world-class Rust debugger on Linux, faster compilation, and faster rust-analyzer."
+4/30/2024 9:45:07,gamedev_financial_support,bevy,5,1,0,1,2,0,0,0,0,1,4,0,0,"Stable ABI, Compile Times, Fix/Remove Orphan Rule."
+4/30/2024 9:57:20,tooling_creator,bevy,1,1,2,2,3,0,0,0,0,2,5,0,1,"Specialization, runtime reflection, lifetime visualization tools (for complex cases)"
+4/30/2024 10:00:05,gamedev_commercial_solo,bevy,4,5,3,2,5,4,1,0,0,4,4,1,2,1. Better tooling for conditional compilation (like Visual Studio's build configuration pulldown for different builds) with better support for mutually exclusive features. 2. Ability to bypass the orphan rule. 3. Compile-time reflection (or even templates/concepts/SFINAE).
+4/30/2024 10:16:09,gamedev_commercial_solo,bevy,0,0,0,1,2,3,2,4,0,0,1,0,0,"Trait specialization. Warm compile times for large workspaces. Some magical feature that would allow Bevy to be more ""if it compiles it runs"", with respect to runtime systems/etc not being found and panicking."
+4/30/2024 10:17:04,other,bevy,2,1,0,3,1,0,1,0,0,2,1,0,1,"Disjoint borrows across functions, self-referential structs, implicit Arc::clone."
+4/30/2024 10:17:47,gamedev_financial_support,custom,3,3,3,3,3,0,3,3,3,3,0,3,3,bevy
+4/30/2024 10:29:25,gamedev_learner,bevy,3,2,2,5,5,0,0,1,0,2,5,1,1,N/A
+4/30/2024 10:44:35,gamedev_serious_hobby,bevy,5,0,1,1,4,0,0,0,0,2,4,0,2,"Compile times, partial borrows, orphan rule"
+4/30/2024 10:47:47,gamedev_casual_hobby,bevy,1,1,2,2,1,0,1,4,4,4,3,0,0,n/a
+4/30/2024 11:03:28,other,bevy,2,0,0,3,0,1,0,0,0,0,3,0,0,"1. Keyword generics/effect handlers
+2. Better compile times
+3. Idk, more people working on it?"
+4/30/2024 11:06:42,gamedev_commercial_solo,bevy,5,2,1,5,5,1,1,5,4,1,5,2,2,"Faster compile time, easier/more standardized setup/support for different platforms, improved frontend tools/frameworks."
+4/30/2024 11:11:53,gamedev_learner,bevy,2,0,0,3,2,0,1,0,0,0,3,0,0,N/A
+4/30/2024 11:23:03,gamedev_learner,bevy,1,5,4,5,0,0,0,0,2,0,0,0,0,Documentation/videos for people coming from c++. Better examples. Automatic and improved lifetime of reference handling so I don't have to manually specify.
+4/30/2024 11:35:05,gamedev_commercial_solo,godot,4,5,4,1,1,1,1,3,4,1,1,1,0,"trait specialization, partial borrows, proper reflection (not proc-macros)"
+4/30/2024 11:39:24,gamedev_serious_hobby,bevy,1,0,4,0,3,0,5,0,0,1,0,0,0,"Rate of adoption in the game industry, `impl T for U where T !: K`, replace serde_json::Value and always-open swagger explorer with in-IDE typings (without tons of codegen)."
+4/30/2024 11:55:06,gamedev_financial_support,bevy,4,2,2,4,3,0,1,1,2,5,5,2,1,"A JIT compilation mode, more intuitive async, somehow become more amenable to UI"
+4/30/2024 12:00:58,gamedev_serious_hobby,custom,3,2,3,0,4,0,0,0,0,4,4,3,0,"Better debugger support, better profiler support (eg working smoothly with Instruments on macOS), a way to hardcode RUST_BACKTRACE=1 in no_std crates."
+4/30/2024 12:04:12,gamedev_financial_support,bevy,2,0,1,0,2,0,1,1,0,0,3,0,0,"1. Add variadic generics, 2. Fast compile times,  3. More mature ecosystem"
+4/30/2024 12:23:35,gamedev_financial_support,hotham,2,1,1,0,1,0,0,0,0,1,2,0,2,1. Add compile time code execution. 2. Add assembly output in interactive speed. 3. Allow traits to be specified more loosely for generic code (automatic deduction or sets of types).
+4/30/2024 12:31:37,tooling_creator,custom,2,0,4,1,0,0,5,2,1,0,0,0,2,Better support for console by winit and wgpu. And more stable crates.
+4/30/2024 12:45:12,tooling_company,piston,0,0,0,0,0,0,0,0,0,0,0,0,0,Disk space usage
+4/30/2024 13:04:10,gamedev_serious_hobby,bevy,2,0,1,1,1,0,0,0,0,0,3,0,0,More mature ecosystem
+4/30/2024 13:11:13,gamedev_learner,bevy,1,0,0,2,3,0,0,0,0,0,2,0,0,N/A
+4/30/2024 13:13:07,other,bevy,3,2,3,3,2,0,1,3,4,2,2,0,1,"Specialization, variadics, more const evaluation"
+4/30/2024 13:20:38,gamedev_serious_hobby,bevy,3,0,1,5,1,3,0,1,2,2,2,0,2,"(1). Add: Compile-time reflection. This would single-handedly fix compile times by removing `syn` and `proc-macro2` from all the giant crates. THIS IS BY FAR THE MOST IMPORTANT TO ME. 🥹
+
+(2). Add: Language ABI. An ABI that's edition-specific would allow other languages to speak with Rust directly, improving integrations with scripting languages and removing dependence on various procedural macros.
+
+(3). Add: Can't decide between generators and fully-supported const. Pick one. 😄✨"
+4/30/2024 13:50:44,other,bevy,5,4,1,5,4,1,3,4,0,0,3,3,1,"Hot reload, mobile support, ui and editor"
+4/30/2024 13:51:01,other,raylib,4,2,4,4,4,3,4,5,1,1,4,1,0,"Orphan rule, binary size, compile times"
+4/30/2024 13:52:44,tooling_company,bevy,5,3,1,2,3,0,3,1,2,0,4,0,0,"variadics, lack of abstraction over async executors, splitting lifetimes on self"
+4/30/2024 14:37:44,gamedev_commercial_solo,bevy,2,0,0,4,5,0,0,0,0,1,1,0,1,"- enum variants not being types (makes some API's more bloated/verbose than they can be)
+- compile time reflection
+- faster debug mode (usable but slow for unit tests)"
+4/30/2024 14:45:59,gamedev_casual_hobby,bevy,5,2,4,3,1,0,0,0,4,4,5,0,0,"(1) Prioritize reducing the resource intensive nature (e.g. RAM, CPU) of surrounding tooling that is almost essential for learning/using rust, primarily rust-analyzer--because it has an outsized negative impact on people who are ""resource constrained"" and their ability to participate/contribute to the Rust community. (Seemingly in contrast to many of the people developing Rust. It is instructive to observe that efforts to improve Rust's performance with dual-core systems was seemingly motivated not by helping people who are still stuck using them but because that's a frequent CI config.)
+
+(2) Compile/iteration times.
+
+(3) Fix me not being paid to write Rust? :)"
+4/30/2024 14:52:42,tooling_creator,bevy,3,3,0,1,4,1,2,2,1,1,3,1,1,"const fn in traits, portable SIMD, and do something about orphan rules"
+4/30/2024 15:02:13,gamedev_commercial_solo,bevy,5,0,0,3,1,0,0,0,2,1,2,0,1,"Compile times 😭 / more hot reloading
+
+Compiler errors, I think largely from dependencies that require C or C++, I fairly regularly have to ""cargo clean"" and rebuild - or currently I can only build individual crates in my Cargo workspace, if I try to build all at once I get some linking error during the build.
+
+Async can be very fragmented and hard to work with. I work with some libraries that require a tokio runtime, but use Bevy as my engine which doesnt use tokio, so I end up having to write verbose boilerplate code to get things to work between the two environments, feels like a mess."
+4/30/2024 15:07:53,tooling_company,bevy,0,0,0,2,0,0,0,0,2,1,0,3,0,"More people would grok it, the web backend tools would be more productive, it’d be the obvious choice instead of python for my day job."
+4/30/2024 15:08:40,gamedev_learner,bevy,5,3,0,2,0,1,0,0,0,1,3,0,0,"- faster compile time when changing almost nothing in the code
+- better (typed without to export manually everything) interop with script language like python to prototype faster"
+4/30/2024 15:27:00,tooling_company,bevy,4,2,3,1,0,0,0,0,0,2,4,0,0,Variadics
+4/30/2024 15:45:59,gamedev_casual_hobby,bevy,0,0,0,1,1,0,0,0,0,0,1,1,0,"Async drop.
+Less need for reborrow tricks!
+"
+4/30/2024 15:47:28,other,bevy,3,1,1,2,3,0,0,1,2,1,3,0,1,"Add Variadic generics, Stable ABI, Better compile times"
+4/30/2024 16:13:10,gamedev_learner,bevy,1,0,3,3,0,0,0,3,5,0,3,0,0,I'm not sufficiently proficient in rust to have any good wishes. But I would like better support for custom allocators.
+4/30/2024 16:14:35,gamedev_learner,bevy,0,1,0,5,2,0,0,0,0,0,4,3,1,"1) Most people complain about orphan rules, but my biggest issue with traits is actually the overlap rules.  I don't really gamedev in rust yet, but I do write code in rust for other purposes entirely.  I've been working on a statistics crate that involves implementing arithmetic on generic types, and the rust trait overlap rules are a huge obstacle to defining arithmetic traits such that arithmetic over generic types is efficient and ergonomic in all the ways that one would expect.  I'm actually working on a couple of crates and a programming idiom to work around this issue, and preliminary results are promising, but it means that I have to abandon standard library traits for arithmetic operations.  To use nice operator syntax with the new idiom/traits, I have to wrap all of my arithmetic expressions in a macro call.  Perhaps one day the rust community could standardize arithmetic on this new idiom (if it works as well as I hope it does)?
+
+2) Could the implied bounds RFC get implemented please?  (https://github.com/rust-lang/rust/issues/44491)
+
+3) The lack of variadic generics is sometimes a pain point, though I've learned how to effectively use macros to cover most cases where you would want this.  The ability to specify tuple types of arbitrary size would still fill in some gaps in what the language can do."
+4/30/2024 16:34:55,gamedev_financial_support,bevy,4,0,0,5,4,0,0,1,1,0,2,0,0,Default param values. Named arguments
+4/30/2024 16:51:53,tooling_creator,bevy,2,1,0,2,1,0,0,0,0,1,1,0,0,"Relaxed orphan traits, faster compiles, easier to understand lifetimes and compiler errors especially in relation with bevy"
+4/30/2024 17:07:56,gamedev_learner,bevy,0,1,0,4,0,0,0,0,1,0,0,0,0,"Nothing, I love using Rust :D"
+4/30/2024 17:15:14,other,bevy,3,0,0,2,3,1,0,0,0,0,3,0,0,"the foundation, compile times, on-disk size of compile artifacts"
+4/30/2024 17:32:55,tooling_company,bevy,3,0,2,0,2,0,5,1,1,1,2,0,0,"Compile times, sdks for native targets like mobile and consoles, scripts"
+4/30/2024 17:34:29,gamedev_serious_hobby,bevy,2,0,0,1,5,0,5,0,2,0,4,1,0,"Game Console support,
+Modding difficulties meaning mods having to be in a different language,
+Game Console support a second time because it’s a huge barrier: my day job (well-known game studio) wouldn’t even consider Rust without being able to run on consoles"
+4/30/2024 17:42:29,gamedev_commercial_solo,bevy,3,2,0,1,1,0,0,0,1,0,1,0,0,"1. Some solution to orphan rules
+2. Project/library specific lints/errors (code actions if we are also considering RA)
+3. Better iteration speed"
+4/30/2024 17:59:17,gamedev_commercial_solo,ggez,0,0,1,0,0,0,4,4,4,3,1,0,0,"Subtype style enums to remove a lot of boilerplate - e.g. When you have some enum with two variants you can just impl a function for the two variants and then derive/macro away the thing for the sum type instead of having to write a boilerplate match block
+
+Making cargo take up less disk space - for speed reasons, I have cargo on my C: drive SSD, but it's a small 100 GB SSD and cargo takes up a huge portion of it. Similarly, making it easier to move my installation/directories for toolchains and libraries would be nice.
+
+Built in multiplexing for network streams with MPSC channels"
+4/30/2024 18:01:03,gamedev_serious_hobby,bevy,3,2,1,0,0,0,0,0,0,1,1,0,0,"1) Remove the dependence of the Rust community/ecosystem on proprietary services e.g. Github, Discord etc.
+
+2) Library-ificate the compiler so that compiler logic can be reused by normal rust code or macros, instead of having to be manually, fallibly reimplemented (e.g. rust-analyzer, syn)
+
+3) Reduce the massive size of compilation artifacts, from the current tens-to-hundreds of gigabytes down to maybe hundeds-to-thousands of megabytes (Or even less if possible)"
+4/30/2024 18:32:06,gamedev_financial_support,custom,4,0,3,2,5,0,5,5,5,2,4,5,1,"Orphan rule solution, included Rust like scripting language that sanely opts out of Rust safety features in favor of under the hood GC, Compile times"
+4/30/2024 18:32:54,gamedev_quit,bevy,3,4,0,2,5,0,0,0,4,0,4,0,0,"1. Hot reloading
+2. Faster compiles
+3. I wish I could just be explicit when I want to and not explicit when I don't want to. Using unsafe is verbose, feels bad, and also opens entire cans of worms that aren't really present in C/C++
+
+Honestly I just don't want to be writing so much Rust"
+4/30/2024 18:42:56,gamedev_serious_hobby,bevy,0,0,0,0,0,0,0,1,0,1,2,0,4,Instant compile time. Variadics.
+4/30/2024 19:28:01,gamedev_serious_hobby,bevy,1,0,0,2,0,0,0,0,0,0,5,0,0,Id actually remove features from Rust so there's not a million ways of doing a single thing.
+4/30/2024 22:21:21,gamedev_serious_hobby,bevy,3,4,0,1,4,0,2,4,2,4,5,0,0,"1.
+
+smoother gradient between ""frictionless but expressive language that feels like scripting"" and ""rigorous language that makes inefficiencies manifest in the code."" as is oft repeated, it's totally fine to clone() and use Rc as needed when struggling with the borrow checker etc, but it still comes with a cost to iteration time and to readability and comprehensibility of the code -- especially when collaborating with others who may be less technical.
+
+(apropos of nothing, this is why i worry that bevy's ""no first-class scripting support, one language to rule them all"" approach will be detrimental long-term to the health of the project.)
+
+personally i don't necessarily want gradual *typing* -- i think it's fully possible to have a language that is both ergonomic and sound and that still does't involve too much ceremony to write as a user. what i really want is to be able to tweak the dial between ""explicit, manifest forms of passing/management of references"" and something more implicit in its semantics. some of the rust-based scripting languages (cf. https://arewegameyet.rs/ecosystem/scripting/ ) seemed to be moving in this direction, but last i checked none of them had gained much traction.
+
+2.
+
+proper, first-class hot reloading. there are hacks out there, but it's still night and day compared to some other environments i've worked in.
+
+3.
+
+compile times, i guess?? i've been following nnethercote's slowly making things faster, and stuff like https://github.com/Kobzol/cargo-wizard already help a lot. but yeah if i could magically have a pony and make iteration instantaneous i'd take it!
+"
+4/30/2024 22:56:08,gamedev_serious_hobby,bevy,5,0,5,3,5,1,3,5,2,3,5,0,1,"Improved compilation speed, more flexible orphan rules, and a more powerful trait system."
+4/30/2024 23:30:18,gamedev_commercial_solo,bevy,5,1,0,1,2,0,3,3,0,1,2,0,4,"Simple hot reloading, instant compiles, optional and convenient garbage collector."
+5/1/2024 0:26:07,gamedev_learner,bevy,5,1,0,3,2,0,0,0,0,0,2,0,0,"Partial borrow, Specialization"
+5/1/2024 1:38:38,gamedev_serious_hobby,bevy,2,0,0,0,0,1,0,0,0,0,2,0,0,"Specialization, portable SIMD, faster compile"
+5/1/2024 2:20:46,gamedev_financial_support,bevy,3,0,1,5,3,4,5,3,4,0,4,4,0,instant hot reloading :) time travel debugging! better ui crates
+5/1/2024 2:43:32,gamedev_learner,bevy,1,5,5,2,5,5,4,5,5,4,5,4,1,"The Ui, rendering system and media porting"
+5/1/2024 3:09:33,gamedev_serious_hobby,none,0,1,5,2,5,2,0,1,0,2,2,0,2,"Back references, traits too weak, generics too limited"
+5/1/2024 3:10:31,tooling_creator,bevy,0,0,0,1,2,1,1,0,0,0,1,0,0,"variadic tuples, variadic generics, variadic function parameters"
+5/1/2024 3:42:48,gamedev_serious_hobby,bevy,2,0,0,0,0,0,0,1,2,0,1,0,0,no idea
+5/1/2024 4:13:39,other,bevy,3,1,3,2,1,0,0,0,0,0,2,0,0,"compile times, speed of rust analyzer"
+5/1/2024 5:03:50,gamedev_learner,bevy,4,1,3,5,2,0,0,0,5,0,4,0,4,Long compile times
+5/1/2024 5:27:38,gamedev_serious_hobby,bevy,0,0,1,2,2,0,4,2,2,0,3,1,1,I can't think of anything
+5/1/2024 5:31:41,gamedev_serious_hobby,custom,2,3,4,2,5,0,0,0,0,0,0,0,0,"Fix the orphan problem, improve parallelism support, and add a library that is great for working with (procedural) animations"
+5/1/2024 5:50:36,gamedev_commercial_solo,bevy,1,1,3,2,4,0,0,0,0,1,1,0,0,"Reflection is difficult in rust but very helpful for gamedev. Better reflection support would be nice.
+
+Prototyping in rust is pretty difficult compared to other languages. I often want to just glue a bunch of singletons and nasty global state together so I can iterate quickly on gameplay. But in rust I often need to handle large code refactors as I iterate on gameplay. I'm not sure what magic thing would change this, but maybe temporarily using a soft borrow checker that reduces a bunch of errors to warnings. This isn't the right solution though.
+
+I often bump into orphan rule issues when trying to combine crates or build out traits to glue together my own libraries. A more advanced checking system here to allow me to violate orphan rules when it isn't causing immediate issues would be nice."
+5/1/2024 6:44:49,gamedev_learner,bevy,0,0,3,0,3,0,0,0,0,1,3,0,0,"Safe and easy dynamic linking, C interface abstractions or a stable ABI, not really Rust itself but client libraries for common web protocols that come with out of the box features such as auto reconnection, client side load balancing, etc. that don't tie you into a serialisation format (i.e. tonic without the impending Google enshitification). 
+
+This and Bevy ECS without all the gaming focus. I think it may even be worth debating an ECS being in the standard library in future."
+5/1/2024 7:05:59,gamedev_serious_hobby,bevy,5,0,0,4,3,0,0,2,2,0,2,0,0,"Compile times, clearer error messages, easier configuration"
+5/1/2024 7:21:58,gamedev_financial_support,quad,5,4,5,2,5,0,2,2,1,5,4,0,1,"orphan rule, partial borrows, hot reloading"
+5/1/2024 7:29:27,gamedev_financial_support,bevy,5,4,4,0,2,0,3,0,0,0,2,4,0,"I would stabilize/add specialization, reflection and improve a lot the trait solver/borrow checker they doesn't always ""undertand"" what we want to do or can't always solve valid code"
+5/1/2024 8:00:17,gamedev_serious_hobby,custom,1,5,2,1,1,0,2,1,1,0,0,0,0,"Remove the orphan checker, add reflection, expand generic capabilities (specialization, higher kinded types, effects)"
+5/1/2024 8:40:16,gamedev_serious_hobby,bevy,2,2,1,2,2,0,0,0,0,1,0,0,0,"Hassle free reflection, Opt-in disabling of orphan rule"
+5/1/2024 9:07:53,tooling_creator,none,5,4,4,0,5,2,0,0,0,0,0,0,0,"Runtime (background) compilation, mut/refcell mess, lack of GPGPU support"
+5/1/2024 9:14:48,tooling_company,bevy,3,0,0,1,3,0,4,0,0,1,2,0,3,Lack of console support
+5/1/2024 9:47:15,tooling_creator,custom,2,5,0,0,0,4,5,0,0,0,0,0,0,"I would add C++23-level compile-time features (constinit, consteval, etc...), a more smart borrow checker or a way to circumvent some of its limitations without writing unsafe Rust (because in unsafe Rust we need to upholds invariants in contrary to C++, making it more prone to UBs if mishandled)."
+5/1/2024 10:40:06,tooling_creator,bevy,1,2,0,4,4,0,0,0,5,0,4,4,0,"Specialization, Reflection, Orphan rule"
+5/1/2024 11:37:31,gamedev_learner,bevy,0,2,0,4,1,0,0,0,0,0,1,0,0,Better debug messages for beginners
+5/1/2024 15:36:36,gamedev_serious_hobby,bevy,3,0,0,1,0,0,0,0,0,0,0,0,0,"Async compatibility across runtimes, add #cfg based polymorphism, and most importantly the rust foundation"
+5/1/2024 15:47:27,other,ggez,2,3,0,4,0,0,0,2,0,0,3,0,0,"Faster compile times, a rust compatible scripting language like the Mun project to allow faster iteration, More Rust Game Dev Tutorials for Rust game engines that are not bevy (good web game, macroquad, fyrox, comfy, ggez)."
+5/1/2024 16:00:11,gamedev_learner,bevy,1,1,3,4,2,1,1,1,1,1,1,3,1,"make it so that there is only one solution for a given problem, lifetime leaks (colored function/type problem)"
+5/1/2024 16:29:12,gamedev_serious_hobby,bevy,3,0,0,0,2,0,0,0,0,0,2,0,0,"Compile times,"
+5/1/2024 18:19:38,gamedev_learner,bevy,3,2,0,5,3,0,1,4,3,1,4,1,1,"Fundamentally more powerful const, 2x faster compile times, and better ergonomics regarding control flow (preventing engine panics and keeping invariants, easier error mapping)"
+5/1/2024 19:05:06,gamedev_serious_hobby,bevy,4,0,0,2,1,0,0,0,0,0,5,0,0,Faster compile times
+5/1/2024 19:37:46,gamedev_learner,bevy,2,1,1,2,5,0,5,2,3,0,5,0,1,"All the weird async stuff, the orphan rule, and ergonomics around discovering methods from traits, etc"
+5/1/2024 21:32:18,gamedev_learner,comfy,2,4,3,5,0,0,0,0,5,0,1,0,0,all three: async pollution
+5/2/2024 2:22:19,tooling_company,bevy,0,0,2,1,0,0,0,2,1,0,0,0,1,Slow down language evolution
+5/2/2024 3:14:20,gamedev_learner,bevy,4,2,0,4,5,0,0,0,0,2,4,0,0,Don't know enough rust to know yet
+5/2/2024 3:17:34,gamedev_serious_hobby,godot,1,0,0,1,2,0,0,0,0,1,3,0,0,"compile times, code looks cluttered sometimes, Vec/Hashmap disallowing get_mut() on more than one element"
+5/2/2024 5:14:49,gamedev_serious_hobby,bevy,4,0,0,1,0,0,0,0,0,0,0,0,0,"1. Long compilation time
+2. Verbosity of operations when calling them on an object as a chain of operations
+3. Documentation comments have a weird format compared to other languages"
+5/2/2024 5:34:58,gamedev_serious_hobby,bevy,2,2,0,1,3,2,1,0,0,1,3,2,0,Easier ways to interop with C/esp. C++
+5/2/2024 5:40:56,gamedev_serious_hobby,bevy,2,0,3,0,4,0,3,0,0,0,2,0,1,Enum variants as types. Not sure what else :)
+5/2/2024 7:30:03,gamedev_serious_hobby,bevy,5,1,2,4,5,0,0,0,0,0,3,0,0,"Recompilation times (i.e changing one value should be so much quicker), better system for including single rust files without compiling an entire project (similar idea to C# scripts in unity),"
+5/2/2024 9:45:07,gamedev_serious_hobby,godot,2,1,0,3,0,0,2,3,1,0,5,0,0,"none, usually the problem is not rust"
+5/2/2024 10:08:45,gamedev_commercial_solo,bevy,1,0,1,0,3,0,0,2,1,0,3,0,0,More mature game engines and tooling. Fast forward 5 years.
+5/2/2024 10:50:44,gamedev_financial_support,bevy,0,0,1,2,0,2,2,2,2,3,3,2,0,Sprite mask
+5/2/2024 11:12:42,gamedev_serious_hobby,tetra,1,0,0,1,0,0,1,2,3,0,2,0,0,i cannot think of anything that would be required
+5/2/2024 17:41:56,tooling_creator,bevy,2,0,4,1,2,1,0,0,0,1,5,0,3,Compile times
+5/3/2024 2:29:55,gamedev_learner,bevy,1,0,1,5,5,0,1,2,1,0,1,0,0,NA
+5/3/2024 5:00:01,gamedev_serious_hobby,bevy,5,5,5,5,5,0,5,5,5,5,5,5,5,Better compile times. No borrow checker. Easier singletons.
+5/3/2024 6:10:27,gamedev_learner,bevy,2,0,1,3,2,1,0,0,1,0,1,0,0,"Rust is great, I've been using it since 2014 :)
+
+- Instant compile times and hot reloading would be magical!
+- Better editor support for bevy-typical things like moving stuff into a plugin or adding all the necessary derives to a component with reflect
+- Even less boilerplate"
+5/3/2024 9:23:40,gamedev_serious_hobby,bevy,2,1,4,1,1,4,1,1,1,1,3,3,1,Proper stdlib.
+5/3/2024 12:57:02,gamedev_commercial_solo,bevy,4,0,3,3,5,3,2,1,2,2,5,0,2,"Hot reloading x3. Other than iteration cycle times, I prefer rust to everything else I use. But compared to dynamic languages (eg JavaScript or Python) cycle times are brutal."
+5/3/2024 17:44:13,gamedev_learner,bevy,2,2,1,2,1,0,0,2,1,0,1,0,1,Flatten the learning curve
+5/3/2024 17:55:57,gamedev_serious_hobby,bevy,1,0,0,1,0,0,0,0,0,2,1,0,0,"Have a stable API, a specification, better borrowcheck"
+5/3/2024 21:54:12,gamedev_commercial_solo,quad,2,2,1,1,1,0,1,0,0,2,2,0,0,"1) support single-thread multiple mutable references for quick experimentation, or at least single mut ref and multiple const refs, even if it has to be marked as unsafe. E.g. `for (i, item) in items.iter_mut().enumerate() { item.property += itemsi+1.property; }` (I know this is a code smell that should be avoided with better code structure, but quick experimentation is key in games. I guess I could do it with Rc? I don't have experience with Rc, but I guess I would need to change my data structure to do that experiment. I know the advice is to use indexes, but that is less safe and doesn't work with efficient non-random-access custom iterators that hide the internal complexity of the items collection. Could I use raw unsafe pointers? I'm not sure. For this problem I have resorted to do a double buffer by cloning the whole items each frame)
+
+2) improve debugger basic printing support, in particular with non-trivial enums. Neither gdb nor lldb support printing anything more complex than a simple enum. example: put a breakpoint after `enum SomeEnum { A(i32), B(u32) }  let items = vec!SomeEnum::A(5), SomeEnum::B(6);` and browse items to find the number contained in items0.A. For me, lldb in the best configuration says if it's an A or B, but not the inner number. Other configs don't even say if it's A or B. GDB works in this case, but in others it crashes.
+
+3) terser delegation than `struct Wrapper {inner: Inner} impl Wrapper { fn f(&self) { self.inner.f() } }`. something like this would be enough: `impl Wrapper { use self.inner::f; }`. See https://internals.rust-lang.org/t/syntactic-sugar-for-delegation-of-implementation/2633/15"
+5/3/2024 21:57:40,gamedev_serious_hobby,custom,1,0,0,0,0,0,1,0,1,0,0,0,0,"allocator_api, whatever comes out of keyword / async generics, and try traits & try blocks"
+5/4/2024 2:07:16,gamedev_financial_support,speedy2d,0,0,5,0,0,0,0,5,0,0,4,0,0,Nothing comes to mind. Rust is outstanding.
+5/4/2024 2:16:24,gamedev_commercial_solo,bevy,0,0,0,2,3,0,2,0,0,1,1,0,0,NA
+5/4/2024 3:16:41,gamedev_serious_hobby,bevy,3,0,2,4,5,4,2,4,3,1,2,5,0,"-A fully functional ABI :D, automatically fix long compile times"
+5/4/2024 10:12:00,gamedev_learner,bevy,5,3,5,5,5,1,3,1,2,4,5,2,3,"Variadics,  variadics and variadics"
