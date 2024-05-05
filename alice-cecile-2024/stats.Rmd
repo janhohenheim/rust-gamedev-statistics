@@ -18,6 +18,10 @@ library(tidyverse)
 library(glue)
 library(ggthemes)
 library(latex2exp)
+library(glmnet)
+library(MASS)
+library(rstatix)
+library(ordinal)
 
 theme_set(theme_solarized_2())
 ```
@@ -198,12 +202,7 @@ dat |>
   ggtitle("Engine (without Bevy or Custom)") +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
-dat |>
-  pivot_longer(cols = 4:16, names_to = "issue", values_to = "rating") |>
-  ggplot(aes(x = issue, y = rating)) +
-  geom_boxplot() +
-  ggtitle("Issues in the ecosystem") +
-  scale_x_discrete(labels = c(
+issue_labels <- c(
     "bad_iteration_time" = "Long compile and iteration times",
     "bad_rust" = "Problems with Rust itself (other than compile times)",
     "bad_abstraction" = "Problems in platform-abstracting crates like winit or wgpu",
@@ -217,29 +216,169 @@ dat |>
     "bad_engine_features" = "Missing features in the engine I use",
     "bad_hiring" = "Difficulty hiring experts who know Rust",
     "bad_performance" = "Poor performance"
-  )) +
+  )
+
+dat |>
+  pivot_longer(cols = 4:16, names_to = "issue", values_to = "rating") |>
+  ggplot(aes(x = issue, y = rating)) +
+  geom_boxplot() +
+  ggtitle("Issues in the ecosystem") +
+  scale_x_discrete(labels = issue_labels) +
   coord_flip()
 ```
 
+## Issues by Use-Case
 
-## Analysis
+### Plot all issues by use case
 
 ```{r}
-# TODO: change this, this is horrible.
-lm(bad_iteration_time ~ engine, data = dat) |> summary()
-lm(bad_rust ~ engine, data = dat) |> summary()
-lm(bad_abstraction ~ engine, data = dat) |> summary()
-lm(bad_docs ~ engine, data = dat) |> summary()
-lm(bad_tooling ~ engine, data = dat) |> summary()
-lm(bad_paying_for_bugs ~ engine, data = dat) |> summary()
-lm(bad_console ~ engine, data = dat) |> summary()
-lm(bad_mobile ~ engine, data = dat) |> summary()
-lm(bad_web ~ engine, data = dat) |> summary()
-lm(bad_engine_bugs ~ engine, data = dat) |> summary()
-lm(bad_engine_features ~ engine, data = dat) |> summary()
-lm(bad_hiring ~ engine, data = dat) |> summary()
-lm(bad_performance ~ engine, data = dat) |> summary()
+for (use_case in levels(dat$usage)) {
+  print(dat |>
+  filter(usage == use_case) |>
+  pivot_longer(cols = 4:16, names_to = "issue", values_to = "rating") |>
+  ggplot(aes(x = issue, y = rating)) +
+  geom_boxplot() +
+  ggtitle(glue("Issues: {use_case}")) +
+  scale_x_discrete(labels = issue_labels) +
+  coord_flip())
+}
 ```
 
-There are imo no significant correlations, considering the huge number of tests and the small sample sizes for some of these categories.
+### ANODE (Analysis of deviance)
 
+```{r}
+issues <- dat[,4:16] |> 
+  as.matrix()
+
+for (issue in colnames(issues)) {
+  olm <- clm(as.factor(issues[,issue]) ~ usage, data = dat)
+  coefficients <- summary(olm)$coefficients
+  olm_row_names <- rownames(coefficients)
+  
+  "-----" |> glue() |> print()
+  "Issue: {issue}" |> glue() |> print()
+  
+  if (any(is.na(coefficients[,4]))) {
+    "Skipping because of NA" |> glue() |> print()
+    next
+  }
+  olm.anova <- anova(olm)
+  p_value <- olm.anova$`Pr(>Chisq)`
+  bonferroni <- 0.05 / ncol(issues)
+  
+  "p_value: {p_value}" |> glue() |> print()
+  
+  if (p_value > bonferroni) {
+    next
+  }
+  "Significant!" |> glue() |> print()
+
+}
+```
+
+Using a Bonferroni correction, the only issue that is significantly correlated with the use-case is `bad docs`: "Inadequate learning materials or docs".
+
+### Post-Hoc Analysis
+
+```{r}
+olm <- clm(as.factor(bad_docs) ~ usage, data = dat)
+summary(olm) |> print()
+confint(olm) |> print()
+```
+
+Although it seems like the documentation issue correlates with the use-case, the
+concrete coefficients are not significant. Bummer. Can I offer you a plot instead?
+
+```{r}
+dat |>
+  ggplot(aes(x = bad_docs, y = usage)) +
+  geom_boxplot() +
+  ggtitle("Inadequate learning materials or docs")
+```
+
+
+## Issues by Engine
+
+### Plot all issues by engine
+
+```{r}
+for (engine_level in levels(dat$engine)) {
+  print(dat |>
+  filter(engine == engine_level) |>
+  pivot_longer(cols = 4:16, names_to = "issue", values_to = "rating") |>
+  ggplot(aes(x = issue, y = rating)) +
+  geom_boxplot() +
+  ggtitle(glue("Issues: {engine_level}")) +
+  scale_x_discrete(labels = issue_labels) +
+  coord_flip())
+}
+```
+
+### ANODE (Analysis of deviance)
+
+```{r}
+# remove data with too few answers
+dat.cleaned <- dat |>
+  dplyr::group_by(engine) |>
+  dplyr::filter(n() > 9) |>
+  dplyr::ungroup()
+
+
+issues <- dat.cleaned[,4:16] |> 
+  as.matrix()
+
+for (issue in colnames(issues)) {
+  olm <- clm(as.factor(issues[,issue]) ~ engine, data = dat.cleaned)
+
+  coefficients <- summary(olm)$coefficients
+  olm_row_names <- rownames(coefficients)
+  
+  "-----" |> glue() |> print()
+  "Issue: {issue}" |> glue() |> print()
+  
+  if (any(is.na(coefficients[,4]))) {
+    "Skipping because of NA" |> glue() |> print()
+    next
+  }
+  olm.anova <- anova(olm)
+  p_value <- olm.anova$`Pr(>Chisq)`
+  bonferroni <- 0.05 / ncol(issues)
+  
+  "p_value: {p_value}" |> glue() |> print()
+  
+  if (p_value > bonferroni) {
+    next
+  }
+  "Significant!" |> glue() |> print()
+}
+```
+The significant correlations happen in the following issues:
+- bad_abstraction: "Problems in platform-abstracting crates like winit or wgpu"
+- bad_docs: "Inadequate learning materials or docs"
+- bad_engine_features: "Missing features in the engine I use"
+
+### Post-Hoc Analysis
+
+```{r}
+olm <- clm(as.factor(bad_abstraction) ~ engine, data = dat.cleaned)
+summary(olm) |> print()
+confint(olm) |> print()
+```
+
+Compared to Bevy, custom engines are much more likely to have problems with platform-abstracting crates like winit or wgpu.
+
+```{r}
+olm <- clm(as.factor(bad_docs) ~ engine, data = dat.cleaned)
+summary(olm) |> print()
+confint(olm) |> print()
+```
+
+Compared to Bevy, custom engines are much less likely to have problems with inadequate learning materials or docs.
+
+```{r}
+olm <- clm(as.factor(bad_engine_features) ~ engine, data = dat.cleaned)
+summary(olm) |> print()
+confint(olm) |> print()
+```
+
+Compared to Bevy, custom engines are much less likely to have missing features.
