@@ -91,7 +91,46 @@ dat <- dat_raw |>
       "2-5" = "2-5 times",
       ">5" = "more than 5 times",
     ),
-    informed = fct_recode(informed,
-      TODO
-    )
+  ) |>
+  mutate(
+    informed = informed |>
+      tolower() |>
+      str_replace_all("this-week-in-rust", "informed_twir") |>
+      str_replace_all("this week in rust", "informed_twir") |>
+      str_replace_all("twitter / x", "informed_twitter") |>
+      str_replace_all("rss", "informed_rss") |>
+      str_replace_all("reddit", "informed_reddit") |>
+      str_replace_all("email subscription to some channel", "informed_email") |>
+      str_replace_all("the official rust gamedev discord server", "informed_discord_main") |>
+      str_replace_all("some other discord server", "informed_discord_other") |>
+      str_replace_all("hacker news", "informed_hacker_news") |>
+      str_replace_all("i visit the website every few week", "informed_website")
   )
+
+# The following splits the "informed" column, 
+# which contains factors concatenated by ;, 
+# into multiple boolean columns
+# Source: <https://stackoverflow.com/a/64412498/5903309>
+informed <- unique(unlist(strsplit(dat$informed, ';'), recursive = FALSE))
+informed <- informed[!is.na(informed)]
+
+for (level in informed) {
+  dat$newcol = rep(0)
+  dat <- rename(dat, !!level := newcol)
+  dat[grep(level, dat$informed), level] = 1
+}
+
+
+dat <- dat |>
+  select(-informed) |>
+  select(-timestamp)
+```
+
+```{r}
+dat |> summary()
+dat |> head()
+```
+
+```{r}
+dat |> write_csv("data_cleaned.csv")
+```

@@ -1,0 +1,61 @@
+excitement,amount,frequency,ai,tone,contributions,ease,like,improve,comment,informed_discord_main,informed_discord_other,informed_reddit,informed_rss,informed_email,mastodon,informed_twitter,informed_twir,informed_website,informed_hacker_news
+4,less,monthly,love,too_formal,2-5,2,NA,NA,NA,1,1,1,0,0,0,0,0,0,0
+5,leave,dont_care,not_okay,just_right,0,NA,NA,"Please fix the RSS, currently pictures can't be loaded because it points to the root directory instead of per-article directory.",NA,0,0,0,1,0,0,0,0,0,0
+4,leave,monthly,okay,just_right,0,NA,NA,NA,NA,0,0,0,1,1,0,0,0,0,0
+4,leave,quarterly,okay,just_right,0,NA,NA,NA,NA,0,0,0,1,0,0,0,0,0,0
+4,more,monthly,not_okay,just_right,0,NA,NA,NA,NA,0,0,0,1,0,0,0,0,0,0
+4,dont_care,monthly,okay,just_right,0,NA,NA,NA,NA,0,0,0,1,0,0,0,0,0,0
+4,less,monthly,good,just_right,0,NA,engine and library updates,NA,NA,0,0,0,1,0,0,0,0,0,0
+4,more,weekly,okay,too_casual,0,NA,Love the breadth of information but not a ton of depth.,NA,NA,1,0,0,1,0,0,0,0,0,0
+3,dont_care,dont_care,dont_care,just_right,0,NA,NA,structure,good luck keeping the rust game dev alive!,0,0,0,1,0,0,0,0,0,0
+3,more,monthly,not_okay,just_right,0,NA,NA,NA,NA,0,0,0,1,0,0,0,0,0,0
+2,less,quarterly,not_okay,just_right,0,NA,NA,NA,NA,0,0,0,1,0,0,0,0,0,0
+1,dont_care,dont_care,love,too_formal,2-5,1,NA,NA,NA,0,0,1,0,0,0,0,0,0,0
+3,dont_care,dont_care,dont_care,just_right,2-5,1,NA,NA,NA,0,0,1,0,0,0,0,0,0,0
+2,leave,quarterly,not_okay,just_right,2-5,2,Library updates and general community news and information are useful.,The submission process is needlessly painful.,"This is not an effective venue for game marketing. It's neat to show off success stories, but Rust game devs are not your target audience!",0,1,0,0,0,1,0,0,0,0
+4,leave,monthly,not_okay,just_right,1,5,"I really like that everyone is welcome to add their news, as long as they follow the format. I wouldn’t like it if it started getting edited / curated in a centralised way.
+
+Also no AI please. It might save some time maybe but it’s going to drain any life from the text, be bland and boring. The newsletter is meant to show a growing community of gamedevs, AI is going to kill any life and excitement.",Please add email subscription,Love that it got revived!! Thanks for the effort!,0,1,1,0,0,0,0,0,0,0
+4,leave,quarterly,not_okay,just_right,2-5,4,NA,NA,NA,1,0,0,1,0,0,0,0,0,0
+3,dont_care,monthly,dont_care,just_right,0,NA,"I like that it talks about lots of topics (not just epic finished games, or just the 9000+ game engines) ^^, and also I like that the games talked about are not all so polished to a professional studio level so that I think that when mine is ready I could submit it for an edition of the newsletter.","The visual style, maybe make it more appealing, new color palette, background, font, stuff like that aha",Thank you for your work!!,1,0,0,0,0,0,0,0,0,0
+3,more,monthly,not_okay,just_right,0,NA,NA,NA,NA,0,1,0,0,0,0,0,0,0,0
+5,less,quarterly,good,just_right,2-5,3,NA,NA,NA,1,0,1,0,0,0,0,0,0,0
+5,more,monthly,not_okay,just_right,0,4,NA,NA,NA,0,0,0,0,0,1,0,0,0,0
+3,more,weekly,good,just_right,0,NA,NA,NA,NA,1,0,0,0,0,0,0,0,0,0
+3,more,monthly,okay,just_right,0,3,The updates on games and frameworks,"It would be cool to include the game engine being used by each game that is highlighted. Also, more internal news about game engines with pointers to blog posts.",Thank you for running this newsletter!,0,1,0,0,0,0,0,0,0,0
+4,dont_care,monthly,okay,just_right,0,NA,NA,NA,NA,0,0,1,0,0,0,1,0,0,0
+2,less,quarterly,good,just_right,2-5,4,I like seeing a sequence of game updates!,"More character and more ""interesting"" updates -- right now there's too much fluff in it",I would love for the newsletter to have more long-form content in it (even if just a bit of it) like a blog post.,1,0,0,0,0,0,0,0,0,0
+2,less,quarterly,not_okay,just_right,2-5,2,NA,The newsletter needs clarity of purpose. It should be an industry periodical. Trying to pitch games doesn't make sense because the only people reading the newsletter are other Rust developers.,NA,0,0,0,0,0,0,1,0,0,0
+1,dont_care,dont_care,not_okay,too_formal,>5,1,"Please don't start generating articles with LLMs. Seriously, I can't stress this enough, it's a terrible idea and will at very best produce nonsense articles that don't actually make sense.","Having content beyond just press releases about games/libraries. Also, making it so I don't have to interact with Git to submit an article.","I stopped contributing to the newsletter because it wasn't useful for getting eyes on my game. People didn't read it, and the people who did read it weren't interested in actually playing my game. Putting my game in the newsletter isn't an advertisement for my game, it was an advertisement for the idea of making games in Rust. In all the times I put a playtesting link into the newsletter, I never got a single sign up.
+
+This makes it kind of a bad deal for devs. It's a non-trivial amount of work, made into more work by the fact that instead of just submitting a blurb/link/image I have to clone your repo and submit a pull request.
+
+The newsletter would be better if it contained more than just press releases - interviews, discussions, advice. That way, it would have much more value to the people who read it.",1,0,1,0,0,0,0,0,0,0
+2,less,dont_care,dont_care,just_right,2-5,3,NA,NA,NA,0,0,1,0,0,0,0,0,0,0
+4,more,quarterly,okay,just_right,1,NA,It lets me hear interesting things about projects (whether game or library) that I am not already following myself.,"Well, clearly the resources to do it at all are a significant problem, so I don't care to specifically request anything further.
+
+But I do think it's important that whatever new more-automated process is created still has some amount of editorial review (of the claims made by submissions and whether a submission is suitable at all) such that the result is not simply whatever is submitted — don't let the newsletter turn into a pure free-advertising channel.",NA,0,0,0,1,0,0,0,0,0,0
+3,less,quarterly,okay,just_right,>5,3,NA,NA,NA,1,0,0,0,0,0,0,0,0,0
+5,dont_care,monthly,good,just_right,0,5,NA,NA,NA,1,1,0,0,0,0,0,0,0,0
+3,more,monthly,not_okay,just_right,2-5,4,NA,NA,NA,0,1,0,0,0,0,0,0,0,0
+2,more,quarterly,not_okay,just_right,0,2,Stop using AI.,Stop using AI.,NA,1,0,0,0,0,0,0,0,0,0
+3,leave,monthly,love,just_right,2-5,3,NA,"I think a way to automate the cumbersome parts, like automatically gathering new releases from relevant repos",Keep up the good work,0,0,0,0,0,0,1,0,0,0
+4,leave,quarterly,okay,too_formal,0,NA,NA,Consistency: the amount of content and when the newsletter is released felt arbitrary,Bevy should probably have its own separate newsletter: I don't really need to know about updates to minor community bevy plugins since it doesn't tell much about the larger ecosystem.,1,0,0,0,0,0,0,0,0,0
+4,leave,monthly,okay,just_right,2-5,4,Has lots of news about a variety of things in Rust gamedev,"Getting them out on time, probably","I would prefer that uncompleted sections are covered minimally instead of covered by AI. Like, ""Name Here released an update for their game, Video Game Name, featuring Some Feature"". Maybe a bit more detail if it's easy to find something copy-pastable.",0,0,0,1,0,0,0,0,0,0
+5,leave,monthly,not_okay,just_right,0,NA,NA,NA,NA,0,0,0,0,0,1,1,0,0,0
+5,dont_care,dont_care,not_okay,just_right,0,NA,NA,NA,Thank you for doing all this.,0,0,0,1,0,0,0,0,0,0
+4,leave,monthly,love,just_right,>5,2,NA,"Better quality videos, can be 10 seconds or shorter to showcase a cool gameplay feature",NA,0,1,1,0,0,0,0,0,0,0
+4,leave,monthly,okay,just_right,>5,5,NA,NA,NA,1,0,1,0,0,0,0,0,0,0
+4,leave,monthly,not_okay,just_right,2-5,4,NA,"More automation, and more distribution of efforts to contributors so that it does not overburden maintainers. Prefer avoiding LLMs for this.",NA,1,0,0,0,0,1,0,0,0,0
+4,leave,monthly,okay,just_right,0,NA,NA,NA,NA,0,0,0,1,0,0,0,0,0,0
+5,more,monthly,not_okay,too_formal,2-5,3,NA,NA,Add dev-tools category.,0,0,0,1,1,0,0,0,0,0
+3,less,dont_care,not_okay,just_right,0,NA,NA,NA,NA,0,0,0,1,0,0,0,0,0,0
+5,leave,monthly,dont_care,just_right,0,NA,NA,NA,NA,0,0,0,0,0,0,0,1,0,0
+4,leave,monthly,love,just_right,0,NA,NA,NA,NA,0,0,0,0,0,0,0,0,0,0
+4,dont_care,monthly,okay,just_right,0,NA,NA,NA,NA,0,0,1,0,0,0,0,1,0,0
+5,more,weekly,dont_care,just_right,0,NA,More noticies from game engines,About new games make in rust and game engine updates,NA,1,0,0,1,0,1,0,0,0,0
+4,leave,dont_care,okay,just_right,0,NA,NA,NA,NA,0,0,0,1,0,0,0,0,0,0
+5,dont_care,monthly,okay,just_right,0,NA,NA,NA,NA,0,0,0,0,0,0,0,0,0,0
+4,leave,monthly,okay,just_right,0,NA,NA,NA,NA,0,0,0,0,0,0,0,1,0,0
+4,leave,monthly,okay,just_right,0,NA,NA,NA,NA,0,0,0,0,0,0,0,0,1,0
+3,more,monthly,okay,too_formal,0,NA,NA,NA,NA,0,0,0,0,0,0,0,0,0,1
