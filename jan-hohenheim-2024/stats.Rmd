@@ -24,9 +24,12 @@ library(rstatix)
 library(ordinal)
 
 theme_set(theme_solarized_2())
+primary_colour <- scale_color_solarized()$palette(1)
 ```
 
-## Data Cleaning
+## Data Wrangling
+
+### Data Cleaning
 
 ```{r}
 dat_raw <- read_csv("data_original.csv")
@@ -124,13 +127,59 @@ for (level in informed) {
 dat <- dat |>
   select(-informed) |>
   select(-timestamp)
+
+dat |> write_csv("data_cleaned.csv")
 ```
 
+### Load Data
+
 ```{r}
+dat <- read_csv("data_cleaned.csv") |>
+  mutate(
+    excitement = as_factor(excitement),
+    amount = as_factor(amount),
+    frequency = as_factor(frequency),
+    ai = as_factor(ai),
+    tone = as_factor(tone),
+    contributions = as_factor(contributions),
+    ease = as_factor(ease),
+    informed_twir = as_factor(informed_twir),
+    informed_twitter = as_factor(informed_twitter),
+    informed_rss = as_factor(informed_rss),
+    informed_reddit = as_factor(informed_reddit),
+    informed_email = as_factor(informed_email),
+    informed_discord_main = as_factor(informed_discord_main),
+    informed_discord_other = as_factor(informed_discord_other),
+    informed_hacker_news = as_factor(informed_hacker_news),
+    informed_website = as_factor(informed_website),
+  )
+
 dat |> summary()
 dat |> head()
 ```
 
+## Analysis
+
+### Excitement
+
 ```{r}
-dat |> write_csv("data_cleaned.csv")
+# stacked bar
+dat |> 
+  count(excitement) |>
+  #order by excitement
+  mutate(excitement = fct_reorder(excitement, as.numeric(excitement) ,.desc = TRUE)) |>
+  ggplot(aes(x = 1, y = n, fill = excitement)) +
+  scale_fill_manual(values = c("darkgreen", "green", "yellow", "orange", "red")) +
+  geom_bar(stat='identity') +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  theme(legend.position = "bottom") +
+  labs(
+    title = "How high is your excitement for the newsletter in its current form?",
+    y = "Count",
+    x = NULL,
+    fill = "Excitement"
+  ) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) + 
+  coord_flip()
 ```
+
