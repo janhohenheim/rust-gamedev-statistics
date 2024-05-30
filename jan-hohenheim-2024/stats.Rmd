@@ -24,7 +24,9 @@ library(rstatix)
 library(ordinal)
 
 theme_set(theme_solarized_2())
-primary_colour <- scale_color_solarized()$palette(1)
+palette <- function(n) {
+  scale_color_solarized()$palette(n)[[n]]
+}
 ```
 
 ## Data Wrangling
@@ -163,14 +165,43 @@ dat |> head()
 ### Excitement
 
 ```{r}
-# stacked bar
+scale_values <- c(
+  rgb(0, 255, 136, maxColorValue = 255),
+  rgb(163, 244, 0, maxColorValue = 255),
+  rgb(255, 211, 0, maxColorValue = 255),
+  rgb(255, 172, 0, maxColorValue = 255),
+  rgb(255, 147, 67, maxColorValue = 255)
+)
+```
+
+```{r}
 dat |> 
   count(excitement) |>
-  #order by excitement
-  mutate(excitement = fct_reorder(excitement, as.numeric(excitement) ,.desc = TRUE)) |>
+  ggplot(aes(x = excitement, y = n, fill = excitement)) +
+  scale_fill_manual(values = scale_values |> rev()) +
+  geom_bar(stat = 'identity') +
+  theme(legend.position = "none") +
+  labs(
+    title = "How high is your excitement for the newsletter in its current form?",
+    y = "Count",
+    x = "Excitement",
+    fill = "Excitement"
+  )
+```
+
+```{r}
+dat |> 
+  count(excitement) |>
+  mutate(
+    excitement = excitement |> 
+      fct_reorder(
+        as.numeric(excitement),
+        .desc = TRUE
+      )
+  ) |>
   ggplot(aes(x = 1, y = n, fill = excitement)) +
-  scale_fill_manual(values = c("darkgreen", "green", "yellow", "orange", "red")) +
-  geom_bar(stat='identity') +
+  scale_fill_manual(values = scale_values) +
+  geom_bar(stat = 'identity') +
   guides(fill = guide_legend(reverse = TRUE)) +
   theme(legend.position = "bottom") +
   labs(
@@ -183,3 +214,111 @@ dat |>
   coord_flip()
 ```
 
+### Amount
+
+```{r}
+dat |> 
+  mutate(
+    amount = amount |> 
+      fct_relevel("less", "leave", "more", "dont_care") |>
+      fct_recode(
+        "Less Content" = "less",
+        "Leave as-is" = "leave",
+        "More Content" = "more",
+        "Don't Care" = "dont_care"
+      )
+  ) |>
+  count(amount) |>
+  ggplot(aes(x = amount, y = n, fill = amount)) +
+  geom_bar(stat = 'identity') +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c(palette(1), palette(1), palette(1), palette(2))) +
+  labs(
+    title = "How would you change the amount of content per newsletter?",
+    y = "Count",
+    x = "Amount",
+  )
+```
+
+```{r}
+dat |> 
+  filter(amount != "dont_care") |>
+  count(amount) |>
+  mutate(
+    amount = amount |> 
+      fct_relevel("more", "leave", "less") |>
+      fct_recode(
+        "Less Content" = "less",
+        "Leave as-is" = "leave",
+        "More Content" = "more",
+      )
+  ) |>
+  ggplot(aes(x = 1, y = n, fill = amount)) +
+  scale_fill_manual(values = c(palette(2), palette(1), palette(2)) |> rev()) +
+  geom_bar(stat = 'identity') +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  theme(legend.position = "bottom") +
+  labs(
+    title = "How would you change the amount of content per newsletter?",
+    y = "Count",
+    x = NULL,
+    fill = "Amount"
+  ) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) + 
+  coord_flip()
+```
+
+### Frequency
+
+```{r}
+dat |> 
+  mutate(
+    frequency = frequency |> 
+      fct_relevel("weekly", "monthly", "quarterly", "dont_care") |>
+      fct_recode(
+        "Weekly" = "weekly",
+        "Leave as-is" = "monthly",
+        "Quarterly" = "quarterly",
+        "Don't Care" = "dont_care"
+      )
+  ) |>
+  count(frequency) |>
+  ggplot(aes(x = frequency, y = n, fill = frequency)) +
+  geom_bar(stat = 'identity') +
+  theme(legend.position = "none") +
+  scale_fill_manual(values = c(palette(2), palette(1), palette(1), palette(1)) |> rev()) +
+  labs(
+    title = "How would you change the frequency of the newsletter?",
+    y = "Count",
+    x = "Frequency",
+  )
+```
+
+
+```{r}
+dat |> 
+  filter(frequency != "dont_care") |>
+  count(frequency) |>
+  mutate(
+    frequency = frequency |> 
+      fct_relevel("quarterly", "monthly", "weekly") |>
+      fct_recode(
+        "Weekly" = "weekly",
+        "Leave as-is" = "monthly",
+        "Quarterly" = "quarterly",
+      )
+  ) |>
+  ggplot(aes(x = 1, y = n, fill = frequency)) +
+  scale_fill_manual(values = c(palette(2), palette(1), palette(2)) |> rev()) +
+  geom_bar(stat = 'identity') +
+  guides(fill = guide_legend(reverse = TRUE)) +
+  theme(legend.position = "bottom") +
+  labs(
+    title = "How would you change the frequency of the newsletter?",
+    y = "Count",
+    x = NULL,
+    fill = "Frequency"
+  ) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) + 
+  coord_flip()
+```
