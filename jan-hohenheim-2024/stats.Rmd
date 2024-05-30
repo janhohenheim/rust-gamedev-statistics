@@ -160,7 +160,7 @@ dat |> summary()
 dat |> head()
 ```
 
-## Analysis
+## Plots
 
 ### Excitement
 
@@ -531,4 +531,16 @@ dat |>
     x = "Informed",
   ) +
   coord_flip()
+```
+
+## Analysis
+
+### Excitement
+
+```{r}
+dat_ <- dat$excitement |> as.numeric()
+mean_ <- dat_ |> mean()
+median_ <- dat_ |> median()
+"mean: {mean_}" |> glue()
+"median: {median_}" |> glue()
 ```
