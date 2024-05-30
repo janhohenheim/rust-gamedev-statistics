@@ -365,6 +365,19 @@ summary(olm) |> print()
 confint(olm) |> print()
 ```
 
+```{r}
+# plot issues for godot with each issue jittered
+dat |>
+  filter(engine == "fyrox") |>
+  pivot_longer(cols = 4:16, names_to = "issue", values_to = "rating") |>
+  ggplot(aes(x = issue, y = rating)) +
+  geom_jitter(width = 0.2, height = 0.2, size = 0.7) +
+  ggtitle("Fyrox") +
+  # use labels
+  scale_x_discrete(labels = issue_labels) +
+  coord_flip()
+```
+
 Compared to Bevy, custom engines are much more likely to have problems with platform-abstracting crates like winit or wgpu.
 
 ```{r}
