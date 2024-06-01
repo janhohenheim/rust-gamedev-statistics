@@ -22,6 +22,12 @@ library(glmnet)
 library(MASS)
 library(rstatix)
 library(ordinal)
+library(MASS)
+library(DescTools)
+library(wordcloud2) 
+library(webshot)
+library("htmlwidgets")
+webshot::install_phantomjs(force = FALSE)
 
 theme_set(theme_solarized_2())
 palette <- function(n) {
@@ -103,6 +109,7 @@ dat <- dat_raw |>
       str_replace_all("this-week-in-rust", "informed_twir") |>
       str_replace_all("this week in rust", "informed_twir") |>
       str_replace_all("twitter / x", "informed_twitter") |>
+      str_replace_all("mastodon", "informed_mastodon") |>
       str_replace_all("rss", "informed_rss") |>
       str_replace_all("reddit", "informed_reddit") |>
       str_replace_all("email subscription to some channel", "informed_email") |>
@@ -125,10 +132,14 @@ for (level in informed) {
   dat[grep(level, dat$informed), level] = 1
 }
 
+# Add options no one picked
+dat$informed_lemmy <- 0
+dat$informed_friends <- 0
+
 
 dat <- dat |>
-  select(-informed) |>
-  select(-timestamp)
+  dplyr::select(-informed) |>
+  dplyr::select(-timestamp)
 
 dat |> write_csv("data_cleaned.csv")
 ```
@@ -138,13 +149,21 @@ dat |> write_csv("data_cleaned.csv")
 ```{r}
 dat <- read_csv("data_cleaned.csv") |>
   mutate(
-    excitement = as_factor(excitement),
+    excitement = 
+      as_factor(excitement) |> 
+      fct_relevel("1", "2", "3", "4", "5"),
     amount = as_factor(amount),
     frequency = as_factor(frequency),
-    ai = as_factor(ai),
+    ai = 
+      as_factor(ai) |>
+      fct_relevel("not_okay", "okay", "dont_care", "good", "love"),
     tone = as_factor(tone),
-    contributions = as_factor(contributions),
-    ease = as_factor(ease),
+    contributions = 
+      as_factor(contributions) |>
+      fct_relevel("0", "1", "2-5", ">5"),
+    ease = 
+      as_factor(ease) |>
+      fct_relevel("1", "2", "3", "4", "5"),
     informed_twir = as_factor(informed_twir),
     informed_twitter = as_factor(informed_twitter),
     informed_rss = as_factor(informed_rss),
@@ -154,6 +173,9 @@ dat <- read_csv("data_cleaned.csv") |>
     informed_discord_other = as_factor(informed_discord_other),
     informed_hacker_news = as_factor(informed_hacker_news),
     informed_website = as_factor(informed_website),
+    informed_mastodon = as_factor(informed_mastodon),
+    informed_lemmy = as_factor(informed_lemmy),
+    informed_friends = as_factor(informed_friends),
   )
 
 dat |> summary()
@@ -179,7 +201,7 @@ dat |>
   count(excitement) |>
   ggplot(aes(x = excitement, y = n, fill = excitement)) +
   scale_fill_manual(values = scale_values |> rev()) +
-  geom_bar(stat = 'identity') +
+  geom_col() +
   theme(legend.position = "none") +
   labs(
     title = "How high is your excitement for the newsletter in its current form?",
@@ -201,7 +223,7 @@ dat |>
   ) |>
   ggplot(aes(x = 1, y = n, fill = excitement)) +
   scale_fill_manual(values = scale_values) +
-  geom_bar(stat = 'identity') +
+  geom_col() +
   guides(fill = guide_legend(reverse = TRUE)) +
   theme(legend.position = "bottom") +
   labs(
@@ -503,27 +525,46 @@ dat |>
 
 ```{r}
 dat |> 
-  select(starts_with("informed")) |>
+  dplyr::select(starts_with("informed")) |>
   pivot_longer(cols = everything()) |>
   filter(value == 1) |>
   count(name) |>
+  rbind(
+    tibble(name = "informed_friends", n = 0),
+    tibble(name = "informed_lemmy", n = 0)
+  ) |>
   mutate(
     name = name |> 
       fct_recode(
-        "Twitter" = "informed_twitter",
+        "X / Twitter" = "informed_twitter",
         "RSS" = "informed_rss",
         "Reddit" = "informed_reddit",
         "Email" = "informed_email",
-        "Discord Main" = "informed_discord_main",
-        "Discord Other" = "informed_discord_other",
+        "Official Discord" = "informed_discord_main",
+        "Other Discord" = "informed_discord_other",
         "Hacker News" = "informed_hacker_news",
         "Website" = "informed_website",
-        "This Week in Rust" = "informed_twir"
+        "This Week in Rust" = "informed_twir",
+        "Group Chat" = "informed_friends",
+        "Lemmy" = "informed_lemmy",
+        "Mastodon" = "informed_mastodon",
       ) |> 
-      fct_relevel("Twitter", "RSS", "Reddit", "Email", "Discord Main", "Discord Other", "Hacker News", "Website", "This Week in Rust")
+      fct_relevel(c(
+        "RSS", 
+        "Official Discord", 
+        "Reddit", 
+        "Other Discord",
+        "Mastodon", 
+        "X / Twitter", 
+        "This Week in Rust", 
+        "Email", 
+        "Hacker News", 
+        "Website", 
+        "Group Chat", 
+        "Lemmy") |> rev())
   ) |>
-  ggplot(aes(x = name, y = n, fill = palette(1))) +
-  geom_bar(stat = 'identity') +
+  ggplot(aes(x = name, y = n)) +
+  geom_bar(stat = 'identity', fill = palette(1)) +
   theme(legend.position = "none") +
   labs(
     title = "How do you usually get informed about\na new edition of the newsletter?",
@@ -533,6 +574,46 @@ dat |>
   coord_flip()
 ```
 
+
+### Comments
+
+```{r}
+clean_words <- function(text) {
+  text |> 
+    str_to_lower() |> 
+    str_remove_all("[[:punct:]]") |> 
+    str_remove_all("\\d+") |> 
+    str_replace_all("\\s+", " ") |>
+    str_split(" ") |>
+    unlist() |> 
+    table() |>
+    as.data.frame() |>
+    arrange(desc(Freq)) |>
+    rename(word = Var1, freq = Freq) |>
+    mutate(word = as.character(word)) |>
+    # common words
+    filter(!word %in% c("i", "a", "the", "to", "and", "of", "in", "for", "is", "it", "on", "that", "with", "from", "this", "have", "more", "what", "about", "would", "like", "your", "just", "some", "other", "also", "there", "them", "they", "their", "when", "will", "were", "were", "which", "or", "as", "has", "if", "am", "at", "all", "by", "an", "its", "isnt", "wouldnt", "+", "too", "did")) |>
+    # boring results
+    filter(!word %in% c("newsletter", "rust"))
+}
+
+plot_words <- function(text, filename) {
+  graph <- text |> 
+    clean_words() |>
+    wordcloud2()
+  # See <https://stackoverflow.com/a/47850987/5903309>
+  saveWidget(graph, "tmp.html", selfcontained = F)
+  webshot("tmp.html", filename, delay = 5, vwidth = 2000, vheight = 2000)
+}
+```
+
+```{r}
+dat$like |> plot_words("like.png")
+dat$improve |> plot_words("improve.png")
+dat$comment |> plot_words("comment.png")
+```
+
+
 ## Analysis
 
 ### Excitement
@@ -540,7 +621,110 @@ dat |>
 ```{r}
 dat_ <- dat$excitement |> as.numeric()
 mean_ <- dat_ |> mean()
+sd_ <- dat_ |> sd()
+ci_ <- t.test(dat_)$conf.int
 median_ <- dat_ |> median()
 "mean: {mean_}" |> glue()
+"standard deviation: {sd_}" |> glue()
+"95% confidence interval: [{ci_[1]}, {ci_[2]}]" |> glue()
 "median: {median_}" |> glue()
+
+t.test(dat_ - 3)
+```
+
+### Frequency
+
+```{r}
+# percentages for each factor
+dat |> 
+  count(frequency) |>
+  mutate(
+    percentage = n / sum(n) * 100
+  )
+
+dat_ <- dat |> 
+  filter(frequency != "dont_care") |>
+  pull(frequency) |>
+  as.numeric()
+t.test(dat_ - 1.5)
+```
+
+### Ease
+
+```{r}
+dat_ <- dat$ease[!is.na(dat$ease)] |> as.numeric()
+mean_ <- dat_ |> mean()
+sd_ <- dat_ |> sd()
+ci_ <- t.test(dat_)$conf.int
+median_ <- dat_ |> median()
+"mean: {mean_}" |> glue()
+"standard deviation: {sd_}" |> glue()
+"95% confidence interval: [{ci_[1]}, {ci_[2]}]" |> glue()
+"median: {median_}" |> glue()
+
+t.test(dat_ - 3)
+```
+
+### Correlation
+
+```{r}
+# plot excitement by contributions
+dat |> 
+  ggplot(aes(x = contributions, y = excitement)) +
+  geom_point() +
+  geom_jitter() +
+  labs(
+    title = "Excitement by Contributions",
+    x = "Contributions",
+    y = "Excitement"
+  )
+
+# plot ai by contributions
+dat |> 
+  ggplot(aes(x = contributions, y = ai)) +
+  geom_point() +
+  geom_jitter() +
+  labs(
+    title = "AI by Contributions",
+    x = "Contributions",
+    y = "AI"
+  )
+
+# plot ease by contributions
+dat |> 
+  filter(!is.na(ease)) |>
+  ggplot(aes(x = contributions, y = ease)) +
+  geom_point() +
+  geom_jitter() +
+  labs(
+    title = "Ease by Contributions",
+    x = "Contributions",
+    y = "Ease"
+  )
+```
+
+```{r}
+JonckheereTerpstraTest(
+  excitement ~ contributions, 
+  dat, 
+  alternative = "decreasing", 
+  nperm = 1000,
+  exact = FALSE
+)
+
+JonckheereTerpstraTest(
+  ai ~ contributions, 
+  dat, 
+  alternative = "increasing", 
+  nperm = 1000,
+  exact = FALSE
+)
+
+JonckheereTerpstraTest(
+  ease ~ contributions, 
+  dat |> filter(!is.na(ease)), 
+  alternative = "decreasing", 
+  nperm = 1000,
+  exact = FALSE
+)
 ```
