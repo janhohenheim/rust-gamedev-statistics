@@ -594,7 +594,7 @@ clean_words <- function(text) {
     # common words
     filter(!word %in% c("i", "a", "the", "to", "and", "of", "in", "for", "is", "it", "on", "that", "with", "from", "this", "have", "more", "what", "about", "would", "like", "your", "just", "some", "other", "also", "there", "them", "they", "their", "when", "will", "were", "were", "which", "or", "as", "has", "if", "am", "at", "all", "by", "an", "its", "isnt", "wouldnt", "+", "too", "did")) |>
     # boring results
-    filter(!word %in% c("newsletter", "rust"))
+    filter(!word %in% c("newsletter", "rust", "game", "games"))
 }
 
 plot_words <- function(text, filename) {
