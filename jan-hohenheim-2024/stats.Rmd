@@ -209,6 +209,7 @@ dat |>
     x = "Excitement",
     fill = "Excitement"
   )
+ggsave("excitement.png")
 ```
 
 ```{r}
@@ -242,7 +243,7 @@ dat |>
 dat |> 
   mutate(
     amount = amount |> 
-      fct_relevel("less", "leave", "more", "dont_care") |>
+      fct_relevel("less", "leave", "dont_care", "more") |>
       fct_recode(
         "Less Content" = "less",
         "Leave as-is" = "leave",
@@ -251,15 +252,15 @@ dat |>
       )
   ) |>
   count(amount) |>
-  ggplot(aes(x = amount, y = n, fill = amount)) +
-  geom_bar(stat = 'identity') +
+  ggplot(aes(x = amount, y = n)) +
+  geom_bar(stat = 'identity', fill = palette(1)) +
   theme(legend.position = "none") +
-  scale_fill_manual(values = c(palette(1), palette(1), palette(1), palette(2))) +
   labs(
     title = "How would you change the amount of content per newsletter?",
     y = "Count",
     x = "Amount",
-  )
+  ) 
+ggsave("content_quantity.png")
 ```
 
 ```{r}
@@ -296,7 +297,7 @@ dat |>
 dat |> 
   mutate(
     frequency = frequency |> 
-      fct_relevel("weekly", "monthly", "quarterly", "dont_care") |>
+      fct_relevel("weekly", "monthly", "dont_care", "quarterly") |>
       fct_recode(
         "Weekly" = "weekly",
         "Leave as-is" = "monthly",
@@ -306,14 +307,15 @@ dat |>
   ) |>
   count(frequency) |>
   ggplot(aes(x = frequency, y = n, fill = frequency)) +
-  geom_bar(stat = 'identity') +
+  geom_bar(stat = 'identity', fill = palette(1)) +
   theme(legend.position = "none") +
-  scale_fill_manual(values = c(palette(1), palette(1), palette(1), palette(2))) +
   labs(
     title = "How would you change the frequency of the newsletter?",
     y = "Count",
     x = "Frequency",
   )
+
+ggsave("frequency.png")
 ```
 
 
@@ -370,6 +372,8 @@ dat |>
     y = "Count",
     x = "AI",
   )
+
+ggsave("ai.png")
 ```
 
 ```{r}
@@ -424,6 +428,8 @@ dat |>
     y = "Count",
     x = "Tone",
   )
+
+ggsave("tone.png")
 ```
 ```{r}
 dat |> 
@@ -476,6 +482,8 @@ dat |>
     y = "Count",
     x = "Contributions",
   )
+
+ggsave("contributions.png")
 ```
 
 ### Ease
@@ -493,6 +501,8 @@ dat |>
     y = "Count",
     x = "Ease",
   )
+
+ggsave("ease.png")
 ```
 
 ```{r}
@@ -572,6 +582,8 @@ dat |>
     x = "Informed",
   ) +
   coord_flip()
+
+ggsave("informed.png")
 ```
 
 
@@ -592,25 +604,25 @@ clean_words <- function(text) {
     rename(word = Var1, freq = Freq) |>
     mutate(word = as.character(word)) |>
     # common words
-    filter(!word %in% c("i", "a", "the", "to", "and", "of", "in", "for", "is", "it", "on", "that", "with", "from", "this", "have", "more", "what", "about", "would", "like", "your", "just", "some", "other", "also", "there", "them", "they", "their", "when", "will", "were", "were", "which", "or", "as", "has", "if", "am", "at", "all", "by", "an", "its", "isnt", "wouldnt", "+", "too", "did")) |>
+    filter(!word %in% c("i", "a", "the", "to", "and", "of", "in", "for", "is", "it", "on", "that", "with", "from", "this", "have", "more", "what", "about", "would", "like", "your", "just", "some", "other", "also", "there", "them", "they", "their", "when", "will", "were", "were", "which", "or", "as", "has", "if", "am", "at", "all", "by", "an", "its", "isnt", "wouldnt", "+", "too", "did", "be", "^^", "so", "do", "are", "but")) |>
     # boring results
     filter(!word %in% c("newsletter", "rust", "game", "games"))
 }
 
-plot_words <- function(text, filename) {
+plot_words <- function(text, filename, pixels) {
   graph <- text |> 
     clean_words() |>
     wordcloud2()
   # See <https://stackoverflow.com/a/47850987/5903309>
   saveWidget(graph, "tmp.html", selfcontained = F)
-  webshot("tmp.html", filename, delay = 5, vwidth = 2000, vheight = 2000)
+  webshot("tmp.html", filename, delay = 5, vwidth = pixels, vheight = pixels)
 }
 ```
 
 ```{r}
-dat$like |> plot_words("like.png")
-dat$improve |> plot_words("improve.png")
-dat$comment |> plot_words("comment.png")
+dat$like |> plot_words("like.png", 1500)
+dat$improve |> plot_words("improve.png", 1700)
+dat$comment |> plot_words("comment.png", 1500)
 ```
 
 
@@ -622,14 +634,27 @@ dat$comment |> plot_words("comment.png")
 dat_ <- dat$excitement |> as.numeric()
 mean_ <- dat_ |> mean()
 sd_ <- dat_ |> sd()
+se_ <- sd_ / sqrt(length(dat_))
 ci_ <- t.test(dat_)$conf.int
 median_ <- dat_ |> median()
 "mean: {mean_}" |> glue()
 "standard deviation: {sd_}" |> glue()
+"standard error: {se_}" |> glue()
 "95% confidence interval: [{ci_[1]}, {ci_[2]}]" |> glue()
 "median: {median_}" |> glue()
 
 t.test(dat_ - 3)
+```
+
+### Amount
+
+```{r}
+dat |> 
+  count(amount) |>
+  mutate(
+    percentage = n / sum(n) * 100
+  )
+
 ```
 
 ### Frequency
@@ -649,20 +674,80 @@ dat_ <- dat |>
 t.test(dat_ - 1.5)
 ```
 
+### AI
+
+```{r}
+dat |> 
+  count(ai) |>
+  mutate(
+    percentage = n / sum(n) * 100
+  )
+
+dat_ <- dat$ai |> as.numeric()
+mean_ <- dat_ |> mean()
+sd_ <- dat_ |> sd()
+se_ <- sd_ / sqrt(length(dat_))
+ci_ <- t.test(dat_)$conf.int
+median_ <- dat_ |> median()
+"mean: {mean_}" |> glue()
+"standard deviation: {sd_}" |> glue()
+"standard error: {se_}" |> glue()
+"95% confidence interval: [{ci_[1]}, {ci_[2]}]" |> glue()
+"median: {median_}" |> glue()
+
+t.test(dat_ - 3)
+```
+
+### Tone
+
+```{r}
+dat |> 
+  count(tone) |>
+  mutate(
+    percentage = n / sum(n) * 100
+  )
+```
+
+### Contributions
+
+```{r}
+dat |> 
+  count(contributions) |>
+  mutate(
+    percentage = n / sum(n) * 100
+  )
+```
+
 ### Ease
 
 ```{r}
 dat_ <- dat$ease[!is.na(dat$ease)] |> as.numeric()
 mean_ <- dat_ |> mean()
 sd_ <- dat_ |> sd()
+se_ <- sd_ / sqrt(length(dat_))
 ci_ <- t.test(dat_)$conf.int
 median_ <- dat_ |> median()
 "mean: {mean_}" |> glue()
 "standard deviation: {sd_}" |> glue()
+"standard error: {se_}" |> glue()
 "95% confidence interval: [{ci_[1]}, {ci_[2]}]" |> glue()
 "median: {median_}" |> glue()
 
 t.test(dat_ - 3)
+```
+
+### Informed
+
+```{r}
+dat |> 
+  dplyr::select(starts_with("informed")) |>
+  pivot_longer(cols = everything()) |>
+  filter(value == 1) |>
+  count(name) |>
+  mutate(
+    percentage = n / sum(n) * 100
+  ) |>
+  arrange(desc(n))
 ```
 
 ### Correlation
@@ -679,6 +764,8 @@ dat |>
     y = "Excitement"
   )
 
+ggsave("excitement_contributions.png")
+
 # plot ai by contributions
 dat |> 
   ggplot(aes(x = contributions, y = ai)) +
@@ -689,6 +776,8 @@ dat |>
     x = "Contributions",
     y = "AI"
   )
+
+ggsave("ai_contributions.png")
 
 # plot ease by contributions
 dat |> 
@@ -701,6 +790,8 @@ dat |>
     x = "Contributions",
     y = "Ease"
   )
+
+ggsave("ease_contributions.png")
 ```
 
 ```{r}
@@ -715,7 +806,7 @@ JonckheereTerpstraTest(
 JonckheereTerpstraTest(
   ai ~ contributions, 
   dat, 
-  alternative = "increasing", 
+  alternative = "two.sided", 
   nperm = 1000,
   exact = FALSE
 )
@@ -723,7 +814,7 @@ JonckheereTerpstraTest(
 JonckheereTerpstraTest(
   ease ~ contributions, 
   dat |> filter(!is.na(ease)), 
-  alternative = "decreasing", 
+  alternative = "two.sided", 
   nperm = 1000,
   exact = FALSE
 )
